@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { requestLogin } from '../helpers/axios';
 
 function Login() {
@@ -6,6 +7,8 @@ function Login() {
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
   const [userNotFound, setUserNotFound] = useState(false);
+
+  const history = useHistory();
 
   useEffect(() => {
     const verifyLogin = () => {
@@ -25,11 +28,12 @@ function Login() {
     e.preventDefault();
 
     try {
-      console.log('oi');
       const { token } = await requestLogin('/login', { email, password });
-      console.log(token);
+
       if (!token) {
         setUserNotFound(true);
+      } else {
+        history.push('/customer/products');
       }
     } catch (error) {
       setUserNotFound(true);
