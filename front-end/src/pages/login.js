@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { requestLogin }  from '../helpers/axios';
+import { requestLogin } from '../helpers/axios';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -20,12 +20,22 @@ function Login() {
     }
   }, [email, password]);
 
-  const handleLogin = () => {
-    const { token } = requestLogin('/login', {email, password});
-    if(!token){
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      console.log('oi');
+      const { token } = await requestLogin('/login', { email, password });
+      console.log(token);
+      if (!token) {
+        setUserNotFound(true);
+      } else {
+        setUserNotFound(false);
+      }
+    } catch (error) {
       setUserNotFound(true);
     }
-  }
+  };
 
   return (
     <div>
@@ -59,7 +69,7 @@ function Login() {
           data-testid="common_login__button-login"
           disabled={ isDisabled }
           name="Login"
-          type="button"
+          type="submit"
           onClick={ handleLogin }
         >
           Login
@@ -73,7 +83,12 @@ function Login() {
           Cadastra-se
         </button>
       </form>
-      {userNotFound && <p data-testid='common_login__element-invalid-email'>Email e/ou senha inválidos</p>}
+      {userNotFound
+      && (
+        <p data-testid="common_login__element-invalid-email">
+          Email e/ou senha inválidos
+        </p>
+      )}
     </div>
   );
 }

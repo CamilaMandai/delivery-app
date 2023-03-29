@@ -1,5 +1,6 @@
-const _jsonwebtoken =('jsonwebtoken');
-const jwt = _jsonwebtoken;
+const jsonwebtoken = require('jsonwebtoken');
+
+const jwt = jsonwebtoken;
 
 const TOKEN_SECRET = process.key || 'secret_key';
 
