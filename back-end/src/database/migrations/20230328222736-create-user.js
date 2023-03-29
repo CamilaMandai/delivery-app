@@ -12,19 +12,19 @@ module.exports = {
           primaryKey: true,
         },
         name: {
-          type: Sequelize.STRING(255),
+          type: Sequelize.STRING(100),
           allowNull: false,
         },
         email: {
-          type: Sequelize.STRING(255),
+          type: Sequelize.STRING(100),
           allowNull: false,
         },
         password: {
-          type: Sequelize.STRING(255),
+          type: Sequelize.STRING(32),
           allowNull: false,
         },
         role: {
-          type: Sequelize.STRING(255),
+          type: Sequelize.STRING(20),
           allowNull: false,
         },
       },

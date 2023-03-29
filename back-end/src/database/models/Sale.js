@@ -1,5 +1,6 @@
 import { Model, STRING, INTEGER, DATE, DECIMAL } from "sequelize";
 import db from ".";
+import User from "./User";
 
 class Sale extends Model {
   id;
@@ -20,39 +21,45 @@ Sale.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    user_id: {
+    userId: {
       type: INTEGER,
       allowNull: false,
       foreignKey: true,
+      field: "user_id",
       references: {
         model: "users",
         key: "id",
       },
     },
-    seller_id: {
+    sellerId: {
       type: INTEGER,
       allowNull: false,
       foreignKey: true,
+      field: "seller_id",
       references: {
         model: "users",
         key: "id",
       },
     },
-    total_price: {
+    totalPrice: {
       type: DECIMAL(9, 2),
       allowNull: false,
+      field: "total_price",
     },
-    delivery_address: {
+    deliveryAddress: {
       type: STRING(100),
       allowNull: false,
+      field: "delivery_address",
     },
-    delivery_number: {
+    deliveryNumber: {
       type: STRING(50),
       allowNull: false,
+      field: "delivery_number",
     },
-    sale_date: {
+    saleDate: {
       type: DATE,
       allowNull: false,
+      field: "sale_date",
     },
     status: {
       type: STRING(50),
@@ -66,5 +73,11 @@ Sale.init(
     modelName: "sales",
   }
 );
+// ERRO PODE SER AQUI NO AS !!!!!!
+Sale.belongsTo(User, { foreignKey: "userId", as: "users" });
+Sale.belongsTo(User, { foreignKey: "sellerId", as: "sellers" });
+
+User.hasMany(Sale, { foreignKey: "userId", as: "user" });
+User.hasMany(Sale, { foreignKey: "sellerId", as: "seller" });
 
 export default Sale;
