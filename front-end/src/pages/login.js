@@ -18,6 +18,7 @@ function Login() {
     } else {
       setIsDisabled(true);
     }
+    setUserNotFound(false);
   }, [email, password]);
 
   const handleLogin = async (e) => {
@@ -29,8 +30,6 @@ function Login() {
       console.log(token);
       if (!token) {
         setUserNotFound(true);
-      } else {
-        setUserNotFound(false);
       }
     } catch (error) {
       setUserNotFound(true);
@@ -65,7 +64,6 @@ function Login() {
           />
         </label>
         <button
-          className="login-btn"
           data-testid="common_login__button-login"
           disabled={ isDisabled }
           name="Login"
@@ -75,7 +73,6 @@ function Login() {
           Login
         </button>
         <button
-          className="registre-se"
           data-testid="common_login__button-register"
           name="Cadastra-se"
           type="button"
