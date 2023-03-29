@@ -3,7 +3,7 @@
 const role = ['administrator', 'seller', 'costumer'];
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up (queryInterface, _Sequelize) {
    await queryInterface.bulkInsert('users', [
     {
       name:'Delivery App Admin',
@@ -27,7 +27,7 @@ module.exports = {
   
   },
 
-  async down (queryInterface, Sequelize) {
+  async down (queryInterface, _Sequelize) {
     await queryInterface.bulkDelete('users', null, {});
   }
 };
