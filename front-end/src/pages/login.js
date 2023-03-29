@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { requestLogin } from '../helpers/axios';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
+  const [userNotFound, setUserNotFound] = useState(false);
+
+  const history = useHistory();
 
   useEffect(() => {
     const verifyLogin = () => {
@@ -16,7 +21,24 @@ function Login() {
     } else {
       setIsDisabled(true);
     }
+    setUserNotFound(false);
   }, [email, password]);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { token } = await requestLogin('/login', { email, password });
+
+      if (!token) {
+        setUserNotFound(true);
+      } else {
+        history.push('/customer/products');
+      }
+    } catch (error) {
+      setUserNotFound(true);
+    }
+  };
 
   return (
     <div>
@@ -46,16 +68,15 @@ function Login() {
           />
         </label>
         <button
-          className="login-btn"
           data-testid="common_login__button-login"
           disabled={ isDisabled }
           name="Login"
-          type="button"
+          type="submit"
+          onClick={ handleLogin }
         >
           Login
         </button>
         <button
-          className="registre-se"
           data-testid="common_login__button-register"
           name="Cadastra-se"
           type="button"
@@ -63,6 +84,12 @@ function Login() {
           Cadastra-se
         </button>
       </form>
+      {userNotFound
+      && (
+        <p data-testid="common_login__element-invalid-email">
+          Email e/ou senha inválidos
+        </p>
+      )}
     </div>
   );
 }
