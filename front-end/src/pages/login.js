@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { requestLogin }  from '../helpers/axios';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
+  const [userNotFound, setUserNotFound] = useState(false);
 
   useEffect(() => {
     const verifyLogin = () => {
@@ -17,6 +19,13 @@ function Login() {
       setIsDisabled(true);
     }
   }, [email, password]);
+
+  const handleLogin = () => {
+    const { token } = requestLogin('/login', {email, password});
+    if(!token){
+      setUserNotFound(true);
+    }
+  }
 
   return (
     <div>
@@ -51,6 +60,7 @@ function Login() {
           disabled={ isDisabled }
           name="Login"
           type="button"
+          onClick={ handleLogin }
         >
           Login
         </button>
@@ -63,6 +73,7 @@ function Login() {
           Cadastra-se
         </button>
       </form>
+      {userNotFound && <p data-testid='common_login__element-invalid-email'>Email e/ou senha inválidos</p>}
     </div>
   );
 }
