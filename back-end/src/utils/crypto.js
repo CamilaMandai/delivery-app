@@ -5,7 +5,7 @@ const createHash = (password) => crypto.createHash('md5').update(password).diges
 const comparePassword = (password, savedHash) => {
   const passHash = createHash(password);
   return passHash === savedHash;
-}
+};
 
 // console.log(createHash('batatinha'));
 // console.log(comparePassword('batatinha', 'd3aa349c8d932ea71f11aa096ba29f61'));

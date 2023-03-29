@@ -11,8 +11,8 @@ const validateUser = async (email, password) => {
       const token = jwtUtils.generateToken(user);
       return token;
     } 
-    return {type: 404, message: 'Not found'};
-  }
+    return { type: 404, message: 'Not found' };
+  };
 
 // const findAll = async () => {
 //   const allUsers = await User.findAll();
