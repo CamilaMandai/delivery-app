@@ -1,36 +1,31 @@
-'use strict';
-import { Model, INTEGER } from "sequelize";
-import db from ".";
-import Product from "./Product";
-import Sale from "./Sale";
-
-
-class SalesProduct extends Model {
-  saleId;
-  productId;
-  quantity;
-}
-
-  SalesProduct.init( {
-    saleId: { 
-      type: INTEGER, 
-      primaryKey: true, 
-    },
-    productId: { 
-      type: INTEGER,
+module.exports = (sequelize, DataTypes) => {
+  const SaleProduct = sequelize.define('SaleProduct', {
+    saleId: {
+      allowNull: false,
       primaryKey: true,
+      type: DataTypes.INTEGER,
+      field: 'sale_id',
     },
-    quantity: {type: INTEGER,}
-  },{ 
-    timestamps: false,
-    tableName: 'sales_products',
+    productId: {
+      allowNull: false,
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+      field: 'product_id',
+    },
+    quantity: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    }
+  }, {
     underscored: true,
-    sequelize: db,
-  });
+    timestamps: false,
+    modelName: 'sales_products',
+  })
 
-  
-  SalesProduct.belongsTo(Sale, { foreignKey: 'saleId' });
-  SalesProduct.belongsTo(Product, { foreignKey: 'productId' })
-  
+  SaleProduct.associate = ({ Sale, Product }) => {
+    SaleProduct.belongsTo(Sale, { foreignKey: 'saleId' } );
+    SaleProduct.belongsTo(Product, { foreignKey: 'productId' });
+  }
 
-  export default SalesProduct;
+  return SaleProduct;
+}

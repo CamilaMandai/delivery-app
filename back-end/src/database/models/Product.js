@@ -1,37 +1,34 @@
-'use strict';
-import { Model, STRING, INTEGER, DECIMAL } from "sequelize";
-import db from ".";
-
-
-class Product extends Model {
-  id;
-  name;
-  price;
-  urlImage;
-}
-
-  Product.init(
-  {
-    id: { 
-      type: INTEGER,
-      primaryKey: true,
+module.exports = (sequelize, DataTypes) => {
+  const Product = sequelize.define('Product', {
+    id: {
       allowNull: false,
-      autoIncrement: true ,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER,
     },
-    name: {type: STRING(100)},
-    price: {type: DECIMAL(4,2)},
-    urlImage: {type: STRING(200)},
-  },
-  { 
-    timestamps: false, 
-    tableName: 'products', 
+    name: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      unique: true,
+    },
+    price: {
+      allowNull: false,
+      type: DataTypes.DECIMAL(4,2),
+    },
+    url_image: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      defaultValue: '',
+    },
+  }, {
     underscored: true,
-    sequelize: db,
-  });
+    timestamps: false,
+    modelName: 'products',
+  })
 
-  Product.associate = (models) => {
-    Product.hasMany(models.SalesProduct, { foreignKey: 'productId' });
-  };
+  Product.associate = ({ SaleProduct }) => {
+    Product.hasMany(SaleProduct, { foreignKey: 'productId', as: 'productId' });
+  }
 
-
-export default Product;
+  return Product;
+}
