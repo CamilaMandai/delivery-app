@@ -1,45 +1,23 @@
-import { Model, STRING, INTEGER } from "sequelize";
-import db from ".";
-
-class User extends Model {
-  id;
-  name;
-  role;
-  email;
-  password;
-}
-
-User.init(
-  {
-    id: {
-      type: INTEGER,
+const User = (sequelize, DataTypes) => {
+  const UserTable = sequelize.define('User', {
+    id:{
+      type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true,
     },
-    name: {
-      type: STRING(100),
-      allowNull: false,
-    },
-    email: {
-      type: STRING(100),
-      allowNull: false,
-    },
-    password: {
-      type: STRING(32),
-      allowNull: false,
-    },
-    role: {
-      type: STRING(20),
-      allowNull: false,
-    },
+    name: DataTypes.STRING(255),
+    email: DataTypes.STRING(255),
+    password: DataTypes.STRING(255),
   },
-  {
-    underscored: true,
-    sequelize: db,
-    timestamps: false,
-    modelName: "users",
-  }
-);
+    {
+      tableName: 'users',
+      underscored: true,
+      timestamps: false,
+    },
+  );
 
-export default User;
+  return UserTable;
+};
+
+module.exports = User;
