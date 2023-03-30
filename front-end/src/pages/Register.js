@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { requestCreateUser } from '../helpers/axios';
 
 function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
-  // const [userNotFound, setUserNotFound] = useState(false);
+  const [userFound, setUserFound] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  };
+  const history = useHistory();
 
   useEffect(() => {
     const verifyLogin = () => {
@@ -24,7 +24,22 @@ function Register() {
     } else {
       setIsDisabled(true);
     }
+    setUserFound(false);
   }, [email, password, name]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const newRegister = await requestCreateUser('/register', { email, name, password });
+      if (newRegister) {
+        history.push('/customer/products');
+      } else {
+        setUserFound(true);
+      }
+    } catch (error) {
+      setUserFound(true);
+    }
+  };
 
   return (
     <div>
@@ -33,7 +48,7 @@ function Register() {
           Nome
           <input
             type="text"
-            id="email"
+            id="nome"
             data-testid="common_register__input-name"
             name="nome"
             value={ name }
@@ -75,6 +90,12 @@ function Register() {
           Cadastrar
         </button>
       </form>
+      {userFound
+      && (
+        <p data-testid="common_register__element-invalid_register">
+          Você já possui um cadastro
+        </p>
+      )}
     </div>
   );
 }
