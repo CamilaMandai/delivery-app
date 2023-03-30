@@ -12,7 +12,9 @@ const validateUser = async (email, password) => {
   };
 
 const findByEmail = async (email) => {
-  const user = await User.findOne({ where: { email }, attributes: { exclude: ['id'] } });
+  const user = await User.findOne({ 
+    where: { email }, 
+    attributes: { exclude: ['id', 'password'] } });
   return user;
 };
 

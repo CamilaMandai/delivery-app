@@ -24,16 +24,33 @@ function Login() {
     setUserNotFound(false);
   }, [email, password]);
 
+  const handleUserRole = (token, user) => {
+    const { role, name } = user;
+    const newUser = { name, email, role, token };
+
+    if (role === 'customer') {
+      localStorage.setItem('user', JSON.stringify(newUser));
+      history.push('/customer/products');
+    }
+    if (role === 'seller') {
+      localStorage.setItem('user', newUser);
+      history.push('/seller/orders');
+    }
+    if (role === 'administrator') {
+      localStorage.setItem('user', newUser);
+      history.push('/admin/manage');
+    }
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const { token } = await requestLogin('/login', { email, password });
-
+      const { token, user } = await requestLogin('/login', { email, password });
       if (!token) {
         setUserNotFound(true);
       } else {
-        history.push('/customer/products');
+        handleUserRole(token, user);
       }
     } catch (error) {
       setUserNotFound(true);
