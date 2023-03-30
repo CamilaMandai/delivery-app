@@ -25,6 +25,13 @@ module.exports = {
       role: role[2],
       email:'zebirita@email.com',
       password: '1c37466c159755ce1fa181bd247cb925',
+     },
+     {
+      id: 4,
+      name:'Batatinha',
+      role: role[2],
+      email:'batatinha@email.com',
+      password: 'd3aa349c8d932ea71f11aa096ba29f61',
      }
     ], { timestamps: false});
   

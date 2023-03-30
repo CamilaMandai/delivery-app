@@ -1,9 +1,20 @@
 const LoginService = require('../services/Login.service');
+const jwt = require('../../utils/jwt');
 
 const login = async (req, res) => {
   const { email, password } = req.body;
-  const token = await LoginService.validateUser(email, password);
-  return res.status(200).json({ token });
+  const [token, user] = await Promise.all([
+    LoginService.validateUser(email, password),
+    LoginService.findByEmail(email),
+  ]);
+  return res.status(200).json({ token, user });
+};
+
+const validateToken = (req, res) => {
+  const { token } = req.body;
+  const isValid = jwt.decodeToken(token);
+  if (!isValid) return res.status(401).json();
+  return res.status(200).json('batatinha');
 };
 
 const register = async (req, res) => {
@@ -16,5 +27,6 @@ const register = async (req, res) => {
 
 module.exports = {
   login,
+  validateToken,
   register,
 };
