@@ -15,15 +15,21 @@ function Products() {
       const { token } = JSON.parse(localStorage.getItem('user')) || '';
       if (!token) return history.push('/');
 
-      const tokenValid = await requestValidateToken({ token });
-      if (!tokenValid) return history.push('/');
+      try {
+        const tokenValid = await requestValidateToken({ token });
+        console.log(tokenValid);
+        if (!tokenValid) return history.push('/');
 
-      const user = JSON.parse(localStorage.getItem('user'));
-      const prods = await requestProducts();
-      setIsAuthenticated(true);
-      setToken(token);
-      setUserName(user.name);
-      setProducts(prods);
+        const user = JSON.parse(localStorage.getItem('user'));
+        const prods = await requestProducts();
+        setIsAuthenticated(true);
+        setToken(token);
+        setUserName(user.name);
+        setProducts(prods);
+      } catch (error) {
+        setIsAuthenticated(false);
+        return history.push('/');
+      }
     })();
   }, [history]);
 

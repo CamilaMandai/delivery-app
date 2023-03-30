@@ -14,7 +14,7 @@ const validateToken = (req, res) => {
   const { token } = req.body;
   const isValid = jwt.decodeToken(token);
   if (!isValid) return res.status(401).json();
-  return res.status(200).json('ok');
+  return res.status(200).json('batatinha');
 };
 
 module.exports = {

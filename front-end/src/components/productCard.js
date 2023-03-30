@@ -41,8 +41,10 @@ function ProductCard({ price, name, id, urlImg }) {
       </button>
       <input
         name="quantity"
+        type="text"
         data-testid={ `customer_products__input-card-quantity-${id}` }
         value={ quantity }
+        readOnly
       />
       <button
         data-testid={ `customer_products__button-card-rm-item-${id}` }
