@@ -11,4 +11,7 @@ const comparePassword = (password, savedHash) => {
 // console.log(comparePassword('batatinha', 'd3aa349c8d932ea71f11aa096ba29f61'));
 // console.log(comparePassword('cenourinha', 'd3aa349c8d932ea71f11aa096ba29f61'));
 
-module.exports = comparePassword;
+module.exports = {
+  comparePassword,
+  createHash,
+};

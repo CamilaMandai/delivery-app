@@ -21,6 +21,10 @@ export const requestProducts = async () => {
 
 export const requestValidateToken = async (token) => {
   const { data } = await api.post('/login/validateToken', token);
-  console.log(data);
+  return data;
+};
+
+export const requestCreateUser = async (endpoint, body) => {
+  const { data } = await api.post(endpoint, body);
   return data;
 };

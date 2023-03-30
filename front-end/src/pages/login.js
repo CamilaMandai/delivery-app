@@ -57,6 +57,11 @@ function Login() {
     }
   };
 
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    history.push('/register');
+  };
+
   return (
     <div>
       <form>
@@ -97,6 +102,7 @@ function Login() {
           data-testid="common_login__button-register"
           name="Cadastra-se"
           type="button"
+          onClick={ handleRegister }
         >
           Cadastra-se
         </button>

@@ -17,7 +17,16 @@ const validateToken = (req, res) => {
   return res.status(200).json('batatinha');
 };
 
+const register = async (req, res) => {
+  const result = await LoginService.register(req.body);
+  if (result.type) {
+    return res.status(result.type).json({ message: result.message });
+  }
+  return res.status(201).json(result.message);
+};
+
 module.exports = {
   login,
   validateToken,
+  register,
 };
