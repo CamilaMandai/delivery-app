@@ -22,7 +22,12 @@ const register = async (req, res) => {
   if (result.type) {
     return res.status(result.type).json({ message: result.message });
   }
-  return res.status(201).json(result.message);
+  const { email, password } = req.body;
+  const [token, user] = await Promise.all([
+    LoginService.validateUser(email, password),
+    LoginService.findByEmail(email),
+  ]);
+  return res.status(201).json({ token, user });
 };
 
 module.exports = {

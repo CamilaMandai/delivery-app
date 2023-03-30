@@ -31,7 +31,10 @@ function Register() {
     e.preventDefault();
     try {
       const newRegister = await requestCreateUser('/register', { email, name, password });
-      if (newRegister) {
+      console.log(newRegister);
+      if (newRegister.token) {
+        const { token, user } = newRegister;
+        localStorage.setItem('user', JSON.stringify({ ...user, token }));
         history.push('/customer/products');
       } else {
         setUserFound(true);
