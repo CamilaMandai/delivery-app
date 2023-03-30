@@ -1,4 +1,4 @@
-const comparePassword = require('../../utils/crypto');
+const { comparePassword, createHash } = require('../../utils/crypto');
 const { User } = require('../../database/models');
 // import User from '../../database/models/User';
 const jwtUtils = require('../../utils/jwt');
@@ -14,6 +14,18 @@ const validateUser = async (email, password) => {
     return { type: 404, message: 'Not found' };
   };
 
+const register = async ({ name, email, password }) => {
+  const isUser = await User.findOne({
+    where: { email },
+  });
+  if (!isUser) {
+    const hash = createHash(password);
+    await User.create({ name, email, password: hash, role: 'customer' });
+    return { type: null, message: 'Created' };
+  }
+  return { type: 409, message: 'Conflict' };
+};
+
 // const findAll = async () => {
 //   const allUsers = await User.findAll();
 //   console.log(allUsers);
@@ -22,5 +34,6 @@ const validateUser = async (email, password) => {
 
 module.exports = {
   validateUser,
+  register,
 };
 // module.exports = findAll;
