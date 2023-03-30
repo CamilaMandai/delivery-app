@@ -25,6 +25,7 @@ function ProductCard({ price, name, id, urlImg }) {
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ urlImg }
         alt={ name }
+        width="150px"
       />
       <h2
         data-testid={ `customer_products__element-card-title-${id}` }

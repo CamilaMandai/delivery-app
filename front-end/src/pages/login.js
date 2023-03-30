@@ -33,11 +33,11 @@ function Login() {
       history.push('/customer/products');
     }
     if (role === 'seller') {
-      localStorage.setItem('user', newUser);
+      localStorage.setItem('user', JSON.stringify(newUser));
       history.push('/seller/orders');
     }
     if (role === 'administrator') {
-      localStorage.setItem('user', newUser);
+      localStorage.setItem('user', JSON.stringify(newUser));
       history.push('/admin/manage');
     }
   };
