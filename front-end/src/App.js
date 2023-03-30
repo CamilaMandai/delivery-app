@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import Login from './pages/login';
 import Products from './pages/products';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Redirect to="/login" />
       </Route>
       <Route path="/login" component={ Login } />
+      <Route path="/register" component={ Register } />
       <Route path="/customer/products" component={ Products } />
     </Switch>
   );
