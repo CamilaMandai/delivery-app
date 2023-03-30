@@ -13,7 +13,8 @@ const login = async (req, res) => {
 const validateToken = (req, res) => {
   const { token } = req.body;
   const isValid = jwt.decodeToken(token);
-  return res.status(200).json(isValid);
+  if (!isValid) return res.status(401).json();
+  return res.status(200).json('ok');
 };
 
 module.exports = {

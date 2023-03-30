@@ -12,11 +12,11 @@ function Products() {
 
   useEffect(() => {
     (async () => {
-      const token = localStorage.getItem('user') || '';
+      const { token } = JSON.parse(localStorage.getItem('user')) || '';
       if (!token) return history.push('/');
 
-      // const tokenValid = await requestValidateToken(token);
-      // if (!tokenValid) return history.push('/');
+      const tokenValid = await requestValidateToken({ token });
+      if (!tokenValid) return history.push('/');
 
       const user = JSON.parse(localStorage.getItem('user'));
       const prods = await requestProducts();
@@ -25,7 +25,7 @@ function Products() {
       setUserName(user.name);
       setProducts(prods);
     })();
-  });
+  }, [history]);
 
   return (
     (isAuthenticated
@@ -35,10 +35,10 @@ function Products() {
           {products.map((e) => (
             <ProductCard
               key={ e.id }
+              id={ e.id }
               price={ e.price }
               name={ e.name }
-              id={ e.id }
-              urlImg={ e.urlImg }
+              urlImg={ e.url_image }
             />
           ))}
         </div>

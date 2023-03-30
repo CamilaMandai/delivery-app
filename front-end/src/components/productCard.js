@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 function ProductCard({ price, name, id, urlImg }) {
+  const [quantity, setQuantity] = useState(0);
+
+  const handleIncreaseDecreaseBtn = ({ target }) => {
+    if (target.name === 'decrease' && quantity !== 0) {
+      setQuantity(quantity - 1);
+    }
+
+    if (target.name === 'increase') {
+      setQuantity(quantity + 1);
+    }
+  };
+
   return (
     <div>
       <h3
         data-testid={ `customer_products__element-card-price-${id}` }
       >
-        {`R$ ${price}`}
+        {price.replace(/\./, ',')}
       </h3>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
@@ -21,20 +33,22 @@ function ProductCard({ price, name, id, urlImg }) {
       </h2>
       <button
         data-testid={ `customer_products__button-card-add-item-${id}` }
-        name="sub"
+        name="increase"
         type="button"
+        onClick={ handleIncreaseDecreaseBtn }
       >
-        -
+        +
       </button>
-      <p
-        data-testid={ ` customer_products__input-card-quantity-${id}` }
-      >
-        0
-      </p>
+      <input
+        name="quantity"
+        data-testid={ `customer_products__input-card-quantity-${id}` }
+        value={ quantity }
+      />
       <button
-        data-testid={ `customer_products__button-card-add-item-${id}` }
-        name="sub"
+        data-testid={ `customer_products__button-card-rm-item-${id}` }
+        name="decrease"
         type="button"
+        onClick={ handleIncreaseDecreaseBtn }
       >
         -
       </button>

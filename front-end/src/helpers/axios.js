@@ -21,5 +21,6 @@ export const requestProducts = async () => {
 
 export const requestValidateToken = async (token) => {
   const { data } = await api.post('/login/validateToken', token);
+  console.log(data);
   return data;
 };
