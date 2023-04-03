@@ -1,10 +1,11 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
+import Register from './pages/Register';
+import SellerOrders from './pages/SellerOrders';
+import Admin from './pages/admin';
 import Login from './pages/login';
 import Products from './pages/products';
-import Register from './pages/Register';
-import Admin from './pages/admin';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/login" component={ Login } />
       <Route path="/register" component={ Register } />
       <Route path="/customer/products" component={ Products } />
+      <Route path="/seller/orders" component={ SellerOrders } />
       <Route path="/admin/manage" component={ Admin } />
     </Switch>
   );
