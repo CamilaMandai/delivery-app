@@ -8,31 +8,32 @@ function orderCard(id, status, date, price) {
   const delOrd = '_element-delivery-status-';
 
   return (
-      <section>
-        <Link  
-          to={`/costumers/orders/{id}`}
+    <section>
+      <Link  
+        to={`/costumers/orders/{id}`}
+      >
+        <h2
+          data-testid={`${cusProd}${elOrdId}id-${id}`}
         >
-          <h2
-          data-testid={`${ cusProd }${ elOrdId }id-${ id }`}
-          >
-            Pedido {id}
-          </h2>
-          <h1
-          data-testid={`${ cusProd }${ delOrd }${ id }`}
-          >
-            { status }
-          </h1>
-          <h1
-          data-testid={`${ cusProd }${ elOrdId }date-${ id }`}
-          >
-            { date }
-          </h1>
-          <h1
-          data-testid={`${ cusProd }${ cardOrd }${ id }`}
-          >
-            { price }
-          </h1>
-        </Link>
+          Pedido
+          { id }
+        </h2>
+        <h1
+          data-testid={`${cusProd}${delOrd}${id}`}
+        >
+          { status }
+        </h1>
+        <h1
+          data-testid={`${cusProd}${elOrdId}date-${id}`}
+        >
+          { date }
+        </h1>
+        <h1
+          data-testid={`${cusProd}${cardOrd}${id}`}
+        >
+          { price }
+        </h1>
+      </Link>
       </section>
   );
 }
