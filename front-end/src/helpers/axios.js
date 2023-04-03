@@ -28,3 +28,8 @@ export const requestCreateUser = async (endpoint, body) => {
   const { data } = await api.post(endpoint, body);
   return data;
 };
+
+export const requestOrders = async () => {
+  const { data } = await api.get('/orders');
+  return data;
+};
