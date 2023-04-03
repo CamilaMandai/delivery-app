@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 function OrderCard(props) {
   const { id, status, date, price } = props;
-  const cusProd = 'customer_products_';
-  const elOrdId = '_element-order-';
-  const cardOrd = '_element-card-price-';
-  const delOrd = '_element-delivery-status-';
+  const CUS_PROD = 'customer_products_';
+  const ELEM_ORD = '_element-order-';
+  const CARD_ORD = '_element-card-price-';
+  const DELVI_ORD = '_element-delivery-status-';
 
   return (
     <section>
@@ -15,23 +15,23 @@ function OrderCard(props) {
         to={ `/costumers/orders/${id}` }
       >
         <h2
-          data-testid={ `${cusProd}${elOrdId}id-${id}` }
+          data-testid={ `${CUS_PROD}${ELEM_ORD}id-${id}` }
         >
           Pedido
           { id }
         </h2>
         <h1
-          data-testid={ `${cusProd}${delOrd}${id}` }
+          data-testid={ `${CUS_PROD}${DELVI_ORD}${id}` }
         >
           { status }
         </h1>
         <h1
-          data-testid={ `${cusProd}${elOrdId}date-${id}` }
+          data-testid={ `${CUS_PROD}${ELEM_ORD}date-${id}` }
         >
           { date }
         </h1>
         <h1
-          data-testid={ `${cusProd}${cardOrd}${id}` }
+          data-testid={ `${CUS_PROD}${CARD_ORD}${id}` }
         >
           { price }
         </h1>
