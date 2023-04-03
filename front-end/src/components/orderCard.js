@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function orderCard(props) {
+function OrderCard(props) {
   const { id, status, date, price } = props;
   const cusProd = 'customer_products_';
   const elOrdId = '_element-order-';
@@ -39,4 +40,11 @@ function orderCard(props) {
   );
 }
 
-export default orderCard;
+OrderCard.propTypes = {
+  id: PropTypes.number.isRequired,
+  status: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+};
+
+export default OrderCard;
