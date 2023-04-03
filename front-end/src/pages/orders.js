@@ -18,15 +18,14 @@ function Orders() {
       <NavBar />
       {
         order && order.map((eachOrder) => (
-            <orderCard
-              key={ eachOrder.id }
-              id={ eachOrder.id }
-              status={ eachOrder.status }
-              date={ eachOrder.date }
-              price={ eachOrder.price }
-            />
-          )
-        )
+          <orderCard
+            key={ eachOrder.id }
+            id={ eachOrder.id }
+            status={ eachOrder.status }
+            date={ eachOrder.date }
+            price={ eachOrder.price }
+          />
+        ))
       }
     </main>
   );

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function orderCard(id, status, date, price) {
+function orderCard(props) {
+  const { id, status, date, price } = props;
   const cusProd = 'customer_products_';
   const elOrdId = '_element-order-';
   const cardOrd = '_element-card-price-';
