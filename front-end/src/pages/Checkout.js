@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import NavBar from '../components/navBar';
 import { requestAllUsers, createSale } from '../helpers/axios';
-import Order from '../components/Order';
+import OrderCheckout from '../components/OrderCheckout';
 
 function Checkout() {
   const history = useHistory();
@@ -86,7 +86,7 @@ function Checkout() {
           { thead() }
           <tbody>
             {cart.map(({ name, quantity, price, id }, index) => (
-              <Order
+              <OrderCheckout
                 key={ id }
                 name={ name }
                 quantity={ quantity }
