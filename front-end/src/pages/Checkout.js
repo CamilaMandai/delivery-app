@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import NavBar from '../components/navBar';
 import { requestAllUsers, createSale } from '../helpers/axios';
-// import Order from '../components/Order';
+import Order from '../components/Order';
 
 function Checkout() {
   const history = useHistory();
@@ -49,15 +49,33 @@ function Checkout() {
   };
 
   const checkout = async () => {
-    const sale = await createSale({
-      userId: savedUser.id,
-      sellerId,
-      totalPrice: total,
-      deliveryAddress,
-      deliveryNumber,
-      saleDate: new Date() });
-    history.push(`orders/${sale.id}`);
+    try {
+      const sale = await createSale({
+        userId: savedUser.id,
+        sellerId,
+        totalPrice: total,
+        deliveryAddress,
+        deliveryNumber,
+        saleDate: new Date() });
+      console.log(sale);
+      history.push(`orders/${sale.id}`);
+    } catch (e) {
+      console.log(e.message);
+    }
   };
+
+  const thead = () => (
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Descrição</th>
+        <th>Quantidade</th>
+        <th>Valor Unitário</th>
+        <th>Sub-total</th>
+        <th>Remover</th>
+      </tr>
+    </thead>
+  );
 
   return (
     <div>
@@ -65,53 +83,17 @@ function Checkout() {
       <h1>Finalizar Pedido</h1>
       <div>
         <table>
+          { thead() }
           <tbody>
             {cart.map(({ name, quantity, price, id }, index) => (
-              <tr key={ id }>
-                <td
-                  data-testid={
-                    `customer_checkout__element-order-table-item-number-${index}`
-                  }
-                >
-                  { index }
-
-                </td>
-                <td
-                  data-testid={ `customer_checkout__element-order-table-name-${index}` }
-                >
-                  { name }
-
-                </td>
-                <td
-                  data-testid={
-                    `customer_checkout__element-order-table-quantity-${index}`
-                  }
-                >
-                  { quantity }
-
-                </td>
-                <td
-                  data-testid={
-                    `customer_checkout__element-order-table-unit-price-${index}`
-                  }
-                >
-                  {price}
-
-                </td>
-                <td
-                  data-testid={
-                    `customer_checkout__element-order-table-sub-total-${index}`
-                  }
-                >
-                  {price * quantity}
-
-                </td>
-                <td
-                  data-testid={ `customer_checkout__element-order-table-remove-${index}` }
-                >
-                  <button type="button" onClick={ () => removeItem(id) }>Remover</button>
-                </td>
-              </tr>
+              <Order
+                key={ id }
+                name={ name }
+                quantity={ quantity }
+                price={ price }
+                index={ index }
+                handleRemove={ () => removeItem(id) }
+              />
             ))}
           </tbody>
         </table>

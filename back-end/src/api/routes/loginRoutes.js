@@ -7,5 +7,4 @@ const router = Router();
 router.post('/', isInvalidLogin, LoginController.login);
 router.post('/validateToken', LoginController.validateToken);
 router.get('/getAll', LoginController.findAll);
-
 module.exports = router;

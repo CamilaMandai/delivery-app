@@ -32,8 +32,8 @@ const register = async ({ name, email, password }) => {
 
 const findAll = async () => {
   const users = await User.findAll();
-  return(users);
-}
+  return (users);
+};
 
 module.exports = {
   validateUser,

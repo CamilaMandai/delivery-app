@@ -33,7 +33,7 @@ const register = async (req, res) => {
 const findAll = async (_req, res) => {
   const users = await LoginService.findAll();
   return res.status(200).json(users);
-}
+};
 
 module.exports = {
   login,

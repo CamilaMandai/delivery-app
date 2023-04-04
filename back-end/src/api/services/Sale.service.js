@@ -1,5 +1,7 @@
 const { Sale } = require('../../database/models');
 
+const NOTFOUND = 'Sale not found';
+
 const create = async ({
   userId, 
   sellerId, 
@@ -11,26 +13,26 @@ const create = async ({
     userId, 
     sellerId, 
     totalPrice, 
-    delivery_address: deliveryAddress, 
-    delivery_number: deliveryNumber, 
-    sale_date: saleDate,
+    deliveryAddress, 
+    deliveryNumber, 
+    saleDate,
     status: 'pendente',
   });
   return sale;
 };
 
 const findBySellerId = async (id) => {
-  const sale = await Sale.findOne({ where: { seller_id: id } });
+  const sale = await Sale.findOne({ where: { sellerId: id } });
   if (!sale) {
-    return { type: 404, message: 'Sale not found' };
+    return { type: 404, message: NOTFOUND };
   }
   return sale;
 };
 
 const findByUserId = async (id) => {
-  const sale = await Sale.findOne({ where: { user_id: id } });
+  const sale = await Sale.findOne({ where: { userId: id } });
   if (!sale) {
-    return { type: 404, message: 'Sale not found' };
+    return { type: 404, message: NOTFOUND };
   }
   return sale;
 };
@@ -38,7 +40,7 @@ const findByUserId = async (id) => {
 const findBySaleId = async (id) => {
   const sale = await Sale.findOne({ where: { id } });
   if (!sale) {
-    return { type: 404, message: 'Sale not found' };
+    return { type: 404, message: NOTFOUND };
   }
   return sale;
 };
