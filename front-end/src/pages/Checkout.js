@@ -13,6 +13,7 @@ function Checkout() {
   const [chosenSeller, setChosenSeller] = useState();
   const [deliveryAddress, setDeliveryAddress] = useState('');
   const [deliveryNumber, setDeliveryNumber] = useState(0);
+  // const [saleId, setSaleId] = useState('');
 
   const savedUser = JSON.parse(localStorage.getItem('user'));
 
@@ -52,7 +53,8 @@ function Checkout() {
     setCart(newCart);
   };
 
-  const checkout = async () => {
+  const checkout = async (event) => {
+    event.preventDefault();
     const saleDate = new Date();
     try {
       const sale = await createSale({
@@ -64,6 +66,7 @@ function Checkout() {
         saleDate });
       console.log(sale);
       history.push(`orders/${sale.id}`);
+      // setSaleId(sale.id);
     } catch (e) {
       console.log(e.message);
     }
@@ -102,15 +105,15 @@ function Checkout() {
             ))}
           </tbody>
         </table>
-        <h2 data-testid="customer_checkout__element-order-total-price">{ total }</h2>
+        <h2 data-testid="customer_checkout__element-order-total-price">{ String(total.toFixed(2)).replace(/\./, ',') }</h2>
       </div>
       <div>
         <h3>Detalhes e Endereço de Entrega</h3>
-        <form>
+        <form onSubmit={ checkout }>
           <label htmlFor="customer_checkout__select-seller">
             P. Vendedora Responsável
             <select
-              data-test-id="customer_checkout__select-seller"
+              data-testid="customer_checkout__select-seller"
               onChange={ (event) => setChosenSeller(event.target.value) }
             >
               {
@@ -147,9 +150,8 @@ function Checkout() {
             />
           </label>
           <button
-            type="button"
+            type="submit"
             data-testid="customer_checkout__button-submit-order"
-            onClick={ checkout }
           >
             Finalizar Pedido
           </button>
