@@ -30,8 +30,14 @@ const register = async (req, res) => {
   return res.status(201).json({ token, user });
 };
 
+const findAll = async (_req, res) => {
+  const users = await LoginService.findAll();
+  return res.status(200).json(users);
+};
+
 module.exports = {
   login,
   validateToken,
   register,
+  findAll,
 };

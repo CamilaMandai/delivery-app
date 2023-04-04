@@ -25,8 +25,8 @@ function Login() {
   }, [email, password]);
 
   const handleUserRole = (token, user) => {
-    const { role, name } = user;
-    const newUser = { name, email, role, token };
+    const { role, name, id } = user;
+    const newUser = { name, email, role, token, id };
     localStorage.setItem('user', JSON.stringify(newUser));
 
     if (role === 'customer') history.push('/customer/products');
