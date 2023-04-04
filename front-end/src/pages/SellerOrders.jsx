@@ -29,9 +29,13 @@ export default function SellerOrders() {
                 >{order.saleDate}
               </div>
               <div
-                data-testid={`seller_orders__element-card-address-${order.id}`}
+                data-testid={`seller_orders__element-card-price-${order.id}`}
                 >{order.totalPrice}
               </div>
+              <p
+                data-testid={`seller_orders__element-card-address-${order.id}`}
+                >{order.deliveryAddress}
+              </p>
             </div>
           ))
         ): (
