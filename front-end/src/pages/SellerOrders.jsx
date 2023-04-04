@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import NavBar from '../components/navBar';
+import NavbarSeller from '../components/NavbarSeller';
+import { requestSaleBySeller } from '../helpers/axios';
 
 export default function SellerOrders() {
   const [orders, setOrders] = useState([]);
+  
+  const user = JSON.parse(localStorage.getItem('user'));
 
-  // useEffect(() => {})
+  useEffect(() => {
+      const requestOrders = async () => {
+      const request = await requestSaleBySeller(user.id);
+      setOrders(request);
+    }
+    requestOrders();
+  },[setOrders])
   
   return (
     <div>
-      <NavBar />
+      <NavbarSeller />
       <section>
         { orders.length > 0 ? (
           orders.map((order) => (
