@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { requestLogin } from '../helpers/axios';
+import { requestLogin, setToken } from '../helpers/axios';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -27,19 +27,11 @@ function Login() {
   const handleUserRole = (token, user) => {
     const { role, name } = user;
     const newUser = { name, email, role, token };
+    localStorage.setItem('user', JSON.stringify(newUser));
 
-    if (role === 'customer') {
-      localStorage.setItem('user', JSON.stringify(newUser));
-      history.push('/customer/products');
-    }
-    if (role === 'seller') {
-      localStorage.setItem('user', JSON.stringify(newUser));
-      history.push('/seller/orders');
-    }
-    if (role === 'administrator') {
-      localStorage.setItem('user', JSON.stringify(newUser));
-      history.push('/admin/manage');
-    }
+    if (role === 'customer') history.push('/customer/products');
+    if (role === 'seller') history.push('/seller/orders');
+    if (role === 'administrator') history.push('/admin/manage');
   };
 
   const handleLogin = async (e) => {
@@ -50,6 +42,7 @@ function Login() {
       if (!token) {
         setUserNotFound(true);
       } else {
+        setToken(token);
         handleUserRole(token, user);
       }
     } catch (error) {
