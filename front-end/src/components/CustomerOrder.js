@@ -4,11 +4,12 @@ import React from 'react';
 import NavBar from './navBar';
 
 function CustomerOrder() {
+  const savedUser = JSON.parse(localStorage.getItem('user'));
   // const formatDate = dayjs(order.saleDate).format('DD/MM/YYYY');
   const dataTestId = 'customer_order_details';
   return (
     <div>
-      <NavBar />
+      <NavBar user={ savedUser.name } />
       <p>
         {' '}
         PEDIDO

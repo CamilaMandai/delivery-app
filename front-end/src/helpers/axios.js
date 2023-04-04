@@ -35,6 +35,7 @@ export const requestAllUsers = async () => {
 };
 
 export const createSale = async (body) => {
+  console.log(body);
   const { data } = await api.post('/orders', body);
   return data;
 };

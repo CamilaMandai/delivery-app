@@ -10,7 +10,7 @@ function Checkout() {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
   const [sellers, setSellers] = useState([]);
-  const [sellerId, setSellerId] = useState();
+  const [chosenSeller, setChosenSeller] = useState();
   const [deliveryAddress, setDeliveryAddress] = useState('');
   const [deliveryNumber, setDeliveryNumber] = useState(0);
 
@@ -18,28 +18,32 @@ function Checkout() {
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem('cartShop'));
-    const savedTotal = savedCart
-      .reduce((acc, curr) => acc + (curr.quantity * curr.price), 0);
+    if (savedCart) {
+      const savedTotal = savedCart
+        .reduce((acc, curr) => acc + (curr.quantity * curr.price), 0);
+      setCart(savedCart);
+      setTotal(savedTotal);
+    }
     const fetchApi = async () => {
       try {
         const users = await requestAllUsers();
         const sellersFiltered = users.filter((user) => user.role === 'seller');
         setSellers(sellersFiltered);
-        setSellerId(sellersFiltered[0]);
+        setChosenSeller(sellersFiltered[0]);
       } catch (e) {
         console.log(e.message);
       }
     };
     fetchApi();
-    setTotal(savedTotal);
-    setCart(savedCart);
   }, [setTotal]);
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem('cartShop'));
-    const savedTotal = savedCart
-      .reduce((acc, curr) => acc + (curr.quantity * curr.price), 0);
-    setTotal(savedTotal);
+    if (savedCart) {
+      const savedTotal = savedCart
+        .reduce((acc, curr) => acc + (curr.quantity * curr.price), 0);
+      setTotal(savedTotal);
+    }
   }, [cart]);
 
   const removeItem = (removedId) => {
@@ -49,14 +53,15 @@ function Checkout() {
   };
 
   const checkout = async () => {
+    const saleDate = new Date();
     try {
       const sale = await createSale({
         userId: savedUser.id,
-        sellerId,
+        sellerId: chosenSeller.id,
         totalPrice: total,
         deliveryAddress,
         deliveryNumber,
-        saleDate: new Date() });
+        saleDate });
       console.log(sale);
       history.push(`orders/${sale.id}`);
     } catch (e) {
@@ -106,7 +111,7 @@ function Checkout() {
             P. Vendedora Responsável
             <select
               data-test-id="customer_checkout__select-seller"
-              onChange={ (event) => setSellerId(event.target.value) }
+              onChange={ (event) => setChosenSeller(event.target.value) }
             >
               {
                 sellers
