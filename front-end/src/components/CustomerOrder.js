@@ -44,7 +44,7 @@ function CustomerOrder() {
       <p>
         <button
           type="button"
-          data-testid="customer_order_details__button-delivery-check customer/orders"
+          data-testid="customer_order_details__button-delivery-check"
         >
           Marcar como entregue
         </button>
