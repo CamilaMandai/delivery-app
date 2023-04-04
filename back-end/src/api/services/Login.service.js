@@ -14,7 +14,7 @@ const validateUser = async (email, password) => {
 const findByEmail = async (email) => {
   const user = await User.findOne({ 
     where: { email }, 
-    attributes: { exclude: ['id', 'password'] } });
+    attributes: { exclude: ['password'] } });
   return user;
 };
 
@@ -30,8 +30,14 @@ const register = async ({ name, email, password }) => {
   return { type: 409, message: 'Conflict' };
 };
 
+const findAll = async () => {
+  const users = await User.findAll();
+  return(users);
+}
+
 module.exports = {
   validateUser,
   findByEmail,
   register,
+  findAll,
 };
