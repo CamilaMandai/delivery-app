@@ -1,16 +1,31 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-function ProductCard({ price, name, id, urlImg }) {
+function ProductCard({ price, name, id, urlImg, cartUpdate }) {
   const [quantity, setQuantity] = useState(0);
 
+  const handleQuantity = ({ target }) => {
+    const updateQuantity = +target.value;
+
+    if (updateQuantity <= 0) {
+      setQuantity(0);
+    }
+
+    setQuantity(updateQuantity);
+
+    cartUpdate({ name, price, id, urlImg, quantity: updateQuantity });
+  };
+
   const handleIncreaseDecreaseBtn = ({ target }) => {
-    if (target.name === 'decrease' && quantity !== 0) {
+    if (target.name === 'decrease') {
+      if (quantity === 0) return;
       setQuantity(quantity - 1);
+      cartUpdate({ name, price, id, urlImg, quantity: quantity - 1 });
     }
 
     if (target.name === 'increase') {
       setQuantity(quantity + 1);
+      cartUpdate({ name, price, id, urlImg, quantity: quantity + 1 });
     }
   };
 
@@ -45,7 +60,7 @@ function ProductCard({ price, name, id, urlImg }) {
         type="text"
         data-testid={ `customer_products__input-card-quantity-${id}` }
         value={ quantity }
-        readOnly
+        onChange={ handleQuantity }
       />
       <button
         data-testid={ `customer_products__button-card-rm-item-${id}` }

@@ -28,3 +28,29 @@ export const requestCreateUser = async (endpoint, body) => {
   const { data } = await api.post(endpoint, body);
   return data;
 };
+
+export const requestAllUsers = async () => {
+  const { data } = await api.get('/login/getAll');
+  return data;
+};
+
+export const createSale = async (body) => {
+  console.log(body);
+  const { data } = await api.post('/orders', body);
+  return data;
+};
+
+export const requestSaleBySeller = async (id) => {
+  const { data } = await api.get(`/orders/seller/${id}`);
+  return data;
+};
+
+export const requestSaleByUser = async (id) => {
+  const { data } = await api.get(`/orders/customer/${id}`);
+  return data;
+};
+
+export const requestSale = async (id) => {
+  const { data } = await api.get(`/orders/${id}`);
+  return data;
+};
