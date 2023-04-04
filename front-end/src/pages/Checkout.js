@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import NavBar from '../components/navBar';
-import { requestAllUsers, createSale } from '../helpers/axios';
+import { requestAllUsers, createSale, createSaleProduct } from '../helpers/axios';
 import OrderCheckout from '../components/OrderCheckout';
 
 function Checkout() {
@@ -65,6 +65,12 @@ function Checkout() {
         deliveryNumber,
         saleDate });
       console.log(sale);
+      const promisses = cart
+        .map(async (item) => createSaleProduct({
+          saleId: sale.id,
+          productId: item.id,
+          quantity: item.quantity }));
+      await Promise.all(promisses);
       history.push(`orders/${sale.id}`);
       // setSaleId(sale.id);
     } catch (e) {

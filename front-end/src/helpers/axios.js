@@ -54,3 +54,13 @@ export const requestSale = async (id) => {
   const { data } = await api.get(`/orders/${id}`);
   return data;
 };
+
+export const createSaleProduct = async (body) => {
+  const { data } = await api.post('/saleproducts', body);
+  return data;
+};
+
+export const requestProductsBySaleId = async (id) => {
+  const { data } = await api.get(`/saleproducts/${id}`);
+  return data;
+};
