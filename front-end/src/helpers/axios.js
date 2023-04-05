@@ -29,6 +29,11 @@ export const requestCreateUser = async (endpoint, body) => {
   return data;
 };
 
+export const requestOrders = async () => {
+  const { data } = await api.get('/orders');
+  return data;
+};
+
 export const requestAllUsers = async () => {
   const { data } = await api.get('/login/getAll');
   return data;
