@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
-import CustomerOrder from './components/CustomerOrder';
 import Checkout from './pages/Checkout';
 import Register from './pages/Register';
 import SellerOrders from './pages/SellerOrders';
