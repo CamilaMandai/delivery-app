@@ -8,7 +8,8 @@ const create = async ({
   totalPrice, 
   deliveryAddress, 
   deliveryNumber, 
-  saleDate }) => {
+}) => {
+  const saleDate = new Date();
   const sale = await Sale.create({
     userId, 
     sellerId, 
@@ -16,7 +17,7 @@ const create = async ({
     deliveryAddress, 
     deliveryNumber, 
     saleDate,
-    status: 'pendente',
+    status: 'Pendente',
   });
   return sale;
 };

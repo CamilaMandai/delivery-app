@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function Order(props) {
   const { name, price, quantity, handleRemove, index } = props;
-  const total = Number(price) * Number(quantity);
+  const total = price * quantity;
   return (
     <tr>
       <td
@@ -54,10 +54,9 @@ function Order(props) {
 
 Order.propTypes = {
   name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
   handleRemove: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
-};
+}.isRequired;
 
 export default Order;

@@ -40,8 +40,9 @@ export const requestAllUsers = async () => {
 };
 
 export const createSale = async (body) => {
-  console.log(body);
+  console.log('====>', body);
   const { data } = await api.post('/orders', body);
+  console.log('====> data', data);
   return data;
 };
 

@@ -23,33 +23,34 @@ export default function SellerOrders() {
         { orders.length > 0 ? (
           orders.map((order) => (
             <div key={ order.id }>
-              <Link to={ `/seller/orders/${order.id}` } />
-              <p
-                data-testid={ `seller_orders__element-order-id-${order.id}` }
-              >
-                Pedido
-              </p>
-              <p>{order.id}</p>
-              <div
-                data-testid={ `seller_orders__element-delivery-status-${order.id}` }
-              >
-                {order.status}
-              </div>
-              <div
-                data-testid={ `seller_orders__element-order-date-${order.id}` }
-              >
-                {order.saleDate}
-              </div>
-              <div
-                data-testid={ `seller_orders__element-card-price-${order.id}` }
-              >
-                {order.totalPrice}
-              </div>
-              <p
-                data-testid={ `seller_orders__element-card-address-${order.id}` }
-              >
-                {order.deliveryAddress}
-              </p>
+              <Link to={ `/seller/orders/${order.id}` }>
+                <p
+                  data-testid={ `seller_orders__element-order-id-${order.id}` }
+                >
+                  Pedido
+                </p>
+                <p>{order.id}</p>
+                <div
+                  data-testid={ `seller_orders__element-delivery-status-${order.id}` }
+                >
+                  {order.status}
+                </div>
+                <div
+                  data-testid={ `seller_orders__element-order-date-${order.id}` }
+                >
+                  {order.saleDate}
+                </div>
+                <div
+                  data-testid={ `seller_orders__element-card-price-${order.id}` }
+                >
+                  {order.totalPrice}
+                </div>
+                <p
+                  data-testid={ `seller_orders__element-card-address-${order.id}` }
+                >
+                  {order.deliveryAddress}
+                </p>
+              </Link>
             </div>
           ))
         ) : (

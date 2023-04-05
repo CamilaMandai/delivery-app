@@ -9,7 +9,7 @@ function NavBar({ user }) {
         data-testid="customer_products__element-navbar-link-products"
         to="/customer/products"
       >
-        Prudutos
+        Produtos
       </Link>
       <Link
         data-testid="customer_products__element-navbar-link-orders"
