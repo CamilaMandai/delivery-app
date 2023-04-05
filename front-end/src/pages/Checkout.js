@@ -4,7 +4,7 @@ import NavBar from '../components/navBar';
 import {
   requestAllUsers,
   createSale,
-  // createSaleProduct,
+  createSaleProduct,
   setToken,
   // requestValidateToken,
 } from '../helpers/axios';
@@ -35,8 +35,9 @@ function Checkout() {
       try {
         const users = await requestAllUsers();
         const sellersFiltered = users.filter((user) => user.role === 'seller');
+        console.log(sellersFiltered);
         setSellers(sellersFiltered);
-        setChosenSeller(sellersFiltered[0]);
+        setChosenSeller(sellersFiltered[0].id);
       } catch (e) {
         console.log(e.message);
       }
@@ -66,17 +67,17 @@ function Checkout() {
       setToken(savedUser.token);
       const sale = await createSale({
         userId: savedUser.id,
-        sellerId: chosenSeller.id,
+        sellerId: chosenSeller,
         totalPrice: total,
         deliveryAddress,
         deliveryNumber,
       });
-      // const promisses = cart
-      //   .map(async (item) => createSaleProduct({
-      //     saleId: sale.id,
-      //     productId: item.id,
-      //     quantity: item.quantity }));
-      // await Promise.all(promisses);
+      const promisses = cart
+        .map(async (item) => createSaleProduct({
+          saleId: sale.id,
+          productId: item.id,
+          quantity: item.quantity }));
+      await Promise.all(promisses);
       history.push(`orders/${sale.id}`);
       // history.push('orders/1');
     } catch (e) {

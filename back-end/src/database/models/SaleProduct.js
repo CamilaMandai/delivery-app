@@ -15,17 +15,17 @@ module.exports = (sequelize, DataTypes) => {
     quantity: {
       allowNull: false,
       type: DataTypes.INTEGER,
-    }
+    },
   }, {
     underscored: true,
     timestamps: false,
-    modelName: 'sales_products',
-  })
+    tableName: 'sales_products',
+  });
 
   SaleProduct.associate = ({ Sale, Product }) => {
-    SaleProduct.belongsTo(Sale, { foreignKey: 'saleId' } );
+    SaleProduct.belongsTo(Sale, { foreignKey: 'saleId' });
     SaleProduct.belongsTo(Product, { foreignKey: 'productId' });
-  }
+  };
 
   return SaleProduct;
-}
+};

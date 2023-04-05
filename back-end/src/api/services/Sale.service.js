@@ -17,7 +17,7 @@ const create = async ({
     deliveryAddress, 
     deliveryNumber, 
     saleDate,
-    status: 'pendente',
+    status: 'Pendente',
   });
   return sale;
 };
