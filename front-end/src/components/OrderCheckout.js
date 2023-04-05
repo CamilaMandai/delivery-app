@@ -54,10 +54,9 @@ function Order(props) {
 
 Order.propTypes = {
   name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
   handleRemove: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
-};
+}.isRequired;
 
 export default Order;

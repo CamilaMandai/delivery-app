@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const SaleController = require('../controllers/Sale.controller');
-const { isValidToken } = require('../middlewares/validateToken.middleware')
+const { isValidToken } = require('../middlewares/validateToken.middleware');
 
 const router = Router();
 
