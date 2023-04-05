@@ -33,3 +33,39 @@ export const requestOrders = async () => {
   const { data } = await api.get('/orders');
   return data;
 };
+
+export const requestAllUsers = async () => {
+  const { data } = await api.get('/login/getAll');
+  return data;
+};
+
+export const createSale = async (body) => {
+  console.log(body);
+  const { data } = await api.post('/orders', body);
+  return data;
+};
+
+export const requestSaleBySeller = async (id) => {
+  const { data } = await api.get(`/orders/seller/${id}`);
+  return data;
+};
+
+export const requestSaleByUser = async (id) => {
+  const { data } = await api.get(`/orders/customer/${id}`);
+  return data;
+};
+
+export const requestSale = async (id) => {
+  const { data } = await api.get(`/orders/${id}`);
+  return data;
+};
+
+export const createSaleProduct = async (body) => {
+  const { data } = await api.post('/saleproducts', body);
+  return data;
+};
+
+export const requestProductsBySaleId = async (id) => {
+  const { data } = await api.get(`/saleproducts/${id}`);
+  return data;
+};
