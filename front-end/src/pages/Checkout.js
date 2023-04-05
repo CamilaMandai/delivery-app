@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import NavBar from '../components/navBar';
-import { requestAllUsers, createSale, createSaleProduct } from '../helpers/axios';
+import {
+  requestAllUsers,
+  createSale,
+  // createSaleProduct,
+  setToken,
+  // requestValidateToken,
+} from '../helpers/axios';
 import OrderCheckout from '../components/OrderCheckout';
 
 function Checkout() {
@@ -12,7 +18,7 @@ function Checkout() {
   const [sellers, setSellers] = useState([]);
   const [chosenSeller, setChosenSeller] = useState();
   const [deliveryAddress, setDeliveryAddress] = useState('');
-  const [deliveryNumber, setDeliveryNumber] = useState(0);
+  const [deliveryNumber, setDeliveryNumber] = useState('');
   // const [saleId, setSaleId] = useState('');
 
   const savedUser = JSON.parse(localStorage.getItem('user'));
@@ -55,24 +61,24 @@ function Checkout() {
 
   const checkout = async (event) => {
     event.preventDefault();
-    const saleDate = new Date();
     try {
+      // await requestValidateToken(savedUser.token);
+      setToken(savedUser.token);
       const sale = await createSale({
         userId: savedUser.id,
         sellerId: chosenSeller.id,
         totalPrice: total,
         deliveryAddress,
         deliveryNumber,
-        saleDate });
-      console.log(sale);
-      const promisses = cart
-        .map(async (item) => createSaleProduct({
-          saleId: sale.id,
-          productId: item.id,
-          quantity: item.quantity }));
-      await Promise.all(promisses);
+      });
+      // const promisses = cart
+      //   .map(async (item) => createSaleProduct({
+      //     saleId: sale.id,
+      //     productId: item.id,
+      //     quantity: item.quantity }));
+      // await Promise.all(promisses);
       history.push(`orders/${sale.id}`);
-      // setSaleId(sale.id);
+      // history.push('orders/1');
     } catch (e) {
       console.log(e.message);
     }
@@ -150,7 +156,7 @@ function Checkout() {
             Número
             <input
               data-testid="customer_checkout__input-address-number"
-              type="number"
+              type="text"
               value={ deliveryNumber }
               onChange={ ({ target }) => setDeliveryNumber(Number(target.value)) }
             />
