@@ -61,6 +61,11 @@ export const requestSale = async (id) => {
   return data;
 };
 
+export const requestAdmin = async (endpoint, body) => {
+  const { data } = await api.post(endpoint, body);
+  return data;
+};
+
 export const createSaleProduct = async (body) => {
   const { data } = await api.post('/saleproducts', body);
   return data;

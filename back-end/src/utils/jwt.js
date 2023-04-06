@@ -30,7 +30,16 @@ const decodeToken = (token) => {
   }
 };
 
+const tokenAdmin = (attributes) => {
+  try {
+    return jwt.sign(attributes, TOKEN_SECRET, jwtConfig);
+  } catch (error) {
+    throw new Error('Falha ao gerar token');
+  }
+};
+
 module.exports = {
   generateToken,
   decodeToken,
+  tokenAdmin,
 };
