@@ -79,6 +79,7 @@ function Checkout() {
           quantity: item.quantity }));
       await Promise.all(promisses);
       history.push(`orders/${sale.id}`);
+
       // history.push('orders/1');
     } catch (e) {
       console.log(e.message);
