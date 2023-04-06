@@ -29,14 +29,20 @@ export const requestCreateUser = async (endpoint, body) => {
   return data;
 };
 
+export const requestOrders = async () => {
+  const { data } = await api.get('/orders');
+  return data;
+};
+
 export const requestAllUsers = async () => {
   const { data } = await api.get('/login/getAll');
   return data;
 };
 
 export const createSale = async (body) => {
-  console.log(body);
+  console.log('====>', body);
   const { data } = await api.post('/orders', body);
+  console.log('====> data', data);
   return data;
 };
 
@@ -57,5 +63,15 @@ export const requestSale = async (id) => {
 
 export const requestAdmin = async (endpoint, body) => {
   const { data } = await api.post(endpoint, body);
+  return data;
+};
+
+export const createSaleProduct = async (body) => {
+  const { data } = await api.post('/saleproducts', body);
+  return data;
+};
+
+export const requestProductsBySaleId = async (id) => {
+  const { data } = await api.get(`/saleproducts/${id}`);
   return data;
 };

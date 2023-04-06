@@ -8,7 +8,8 @@ const create = async ({
   totalPrice, 
   deliveryAddress, 
   deliveryNumber, 
-  saleDate }) => {
+}) => {
+  const saleDate = new Date();
   const sale = await Sale.create({
     userId, 
     sellerId, 
@@ -16,13 +17,13 @@ const create = async ({
     deliveryAddress, 
     deliveryNumber, 
     saleDate,
-    status: 'pendente',
+    status: 'Pendente',
   });
   return sale;
 };
 
 const findBySellerId = async (id) => {
-  const sale = await Sale.findOne({ where: { sellerId: id } });
+  const sale = await Sale.findAll({ where: { sellerId: id } });
   if (!sale) {
     return { type: 404, message: NOTFOUND };
   }
@@ -30,7 +31,7 @@ const findBySellerId = async (id) => {
 };
 
 const findByUserId = async (id) => {
-  const sale = await Sale.findOne({ where: { userId: id } });
+  const sale = await Sale.findAll({ where: { userId: id } });
   if (!sale) {
     return { type: 404, message: NOTFOUND };
   }
