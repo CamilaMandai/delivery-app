@@ -12,10 +12,10 @@ function Login() {
 
   useEffect(() => {
     const isLogged = async () => {
-      const { token } = JSON.parse(localStorage.getItem('user'));
-      if (token) {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
         try {
-          const tokenValid = await requestValidateToken({ token });
+          const tokenValid = await requestValidateToken({ token: user.token });
           if (tokenValid) return history.push('/customer/products');
         } catch (e) {
           console.log(e.message);
@@ -23,7 +23,7 @@ function Login() {
       }
     };
     isLogged();
-  }, []);
+  }, [history]);
 
   useEffect(() => {
     const verifyLogin = () => {

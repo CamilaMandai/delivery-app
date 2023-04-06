@@ -11,14 +11,14 @@ function Orders() {
     const requestOrders = async () => {
       const request = await requestSaleByUser(user.id);
       console.log(request);
-      setOrders(request);
+      setOrder(request);
     };
     requestOrders();
   }, [setOrder]);
 
   return (
     <main>
-      <NavBar />
+      <NavBar user={ user.name } />
       {
         order.map((eachOrder) => (
           <OrderCard
