@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 
 function OrderCard(props) {
   const { id, status, date, price } = props;
-  const CUS_PROD = 'customer_products_';
+  const formatDate = dayjs(date).format('DD/MM/YYYY');
+  const CUS_PROD = 'customer_orders_';
   const ELEM_ORD = '_element-order-';
   const CARD_ORD = '_element-card-price-';
   const DELVI_ORD = '_element-delivery-status-';
@@ -28,12 +30,12 @@ function OrderCard(props) {
         <h1
           data-testid={ `${CUS_PROD}${ELEM_ORD}date-${id}` }
         >
-          { date }
+          { formatDate }
         </h1>
         <h1
           data-testid={ `${CUS_PROD}${CARD_ORD}${id}` }
         >
-          { price }
+          { price.replace(/\./, ',') }
         </h1>
       </Link>
     </section>

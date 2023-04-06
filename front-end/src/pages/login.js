@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { requestLogin, setToken } from '../helpers/axios';
+import { requestLogin, setToken, requestValidateToken } from '../helpers/axios';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -9,6 +9,21 @@ function Login() {
   const [userNotFound, setUserNotFound] = useState(false);
 
   const history = useHistory();
+
+  useEffect(() => {
+    const isLogged = async () => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
+        try {
+          const tokenValid = await requestValidateToken({ token: user.token });
+          if (tokenValid) return history.push('/customer/products');
+        } catch (e) {
+          console.log(e.message);
+        }
+      }
+    };
+    isLogged();
+  }, [history]);
 
   useEffect(() => {
     const verifyLogin = () => {
