@@ -1,10 +1,9 @@
 import React from 'react';
-import CustomerOrder from '../components/CustomerOrder';
 
 function OrdersDetails() {
   return (
     <main>
-      <CustomerOrder />
+      <h1>Orders Details!</h1>
     </main>
   );
 }
