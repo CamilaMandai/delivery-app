@@ -1,29 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from '../components/navBar';
-import { requestOrders } from '../helpers/axios';
+import { requestSaleByUser } from '../helpers/axios';
 import OrderCard from '../components/orderCard';
 
 function Orders() {
   const [order, setOrder] = useState([]);
+  const user = JSON.parse(localStorage.getItem('user'));
 
-  const getAllOrders = async () => {
-    const data = await requestOrders();
-    setOrder(data);
-  };
-
-  useEffect(() => getAllOrders());
+  useEffect(() => {
+    const requestOrders = async () => {
+      const request = await requestSaleByUser(user.id);
+      console.log(request);
+      setOrders(request);
+    };
+    requestOrders();
+  }, [setOrder]);
 
   return (
     <main>
       <NavBar />
       {
-        order && order.map((eachOrder) => (
+        order.map((eachOrder) => (
           <OrderCard
             key={ eachOrder.id }
             id={ eachOrder.id }
             status={ eachOrder.status }
-            date={ eachOrder.date }
-            price={ eachOrder.price }
+            date={ eachOrder.saleDate }
+            price={ eachOrder.totalPrice }
           />
         ))
       }
