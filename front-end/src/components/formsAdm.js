@@ -9,6 +9,7 @@ function FormsAdm() {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState(roles[2]);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [userFound, setUserFound] = useState(false);
 
   useEffect(() => {
     const validateForms = () => {
@@ -23,6 +24,7 @@ function FormsAdm() {
     } else {
       setIsDisabled(true);
     }
+    setUserFound(false);
   }, [email, password, name]);
 
   const handleSubmit = async (event) => {
@@ -36,6 +38,7 @@ function FormsAdm() {
         headers,
       );
     } catch (error) {
+      setUserFound(true);
       console.log(error);
     }
   };
@@ -97,6 +100,12 @@ function FormsAdm() {
           CADASTRAR
         </button>
       </form>
+      {userFound
+      && (
+        <p data-testid="admin_manage__element-invalid-register">
+          Você já possui um cadastro
+        </p>
+      )}
     </div>
   );
 }
