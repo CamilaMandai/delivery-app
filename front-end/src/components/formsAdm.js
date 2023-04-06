@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { requestAdmin } from '../helpers/axios';
+
+const roles = ['admin', 'seller', 'customer'];
 
 function FormsAdm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState(roles[2]);
   const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
@@ -20,6 +24,21 @@ function FormsAdm() {
       setIsDisabled(true);
     }
   }, [email, password, name]);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { token } = JSON.parse(localStorage.getItem('user'));
+      const headers = { token };
+      await requestAdmin(
+        '/admin/manage',
+        { name, email, password, role },
+        headers,
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -61,13 +80,18 @@ function FormsAdm() {
             placeholder="********"
           />
         </label>
-        <select data-testid="admin_manage__select-role">
+        <select
+          data-testid="admin_manage__select-role"
+          onChange={ (e) => setRole(e.target.value) }
+          value={ role }
+        >
           <option value="customer">Cliente</option>
           <option value="seller">Vendedor</option>
         </select>
         <button
           data-testid="admin_manage__button-register"
           disabled={ isDisabled }
+          onClick={ handleSubmit }
           type="button"
         >
           CADASTRAR
