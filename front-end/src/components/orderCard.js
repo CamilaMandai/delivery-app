@@ -14,7 +14,7 @@ function OrderCard(props) {
   return (
     <section>
       <Link
-        to={ `/costumers/orders/${id}` }
+        to={ `/costumer/orders/${id}` }
       >
         <h2
           data-testid={ `${CUS_PROD}${ELEM_ORD}id-${id}` }
