@@ -6,9 +6,9 @@ import Register from './pages/Register';
 import SellerOrders from './pages/SellerOrders';
 import Admin from './pages/admin';
 import Orders from './pages/orders';
-import OrdersDetails from './pages/ordersDetails';
 import Login from './pages/login';
 import Products from './pages/products';
+import CustomerOrder from './components/CustomerOrder';
 
 function App() {
   return (
@@ -21,10 +21,9 @@ function App() {
       <Route path="/customer/products" component={ Products } />
       <Route path="/seller/orders" component={ SellerOrders } />
       <Route path="/admin/manage" component={ Admin } />
-      <Route path="/customer/orders" component={ Orders } />
-      <Route path="/customer/orders/:id" component={ OrdersDetails } />
+      <Route path="/customer/orders/:id" component={ CustomerOrder } />
       <Route path="/customer/checkout" component={ Checkout } />
-      {/* <Route exact path="/customer/orders" component={ CustomerOrder } /> */}
+      <Route exact path="/customer/orders" component={ Orders } />
     </Switch>
   );
 }
