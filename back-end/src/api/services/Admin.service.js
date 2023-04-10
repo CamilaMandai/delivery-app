@@ -9,7 +9,7 @@ const getUserByEmail = async (email) => {
   return user;
 };
 
-const adminRegister = async (name, email, password, role = 'customer') => {
+const adminRegister = async (name, email, password, role = 'administrator') => {
   const isUser = await getUserByEmail(email);
   if (isUser) return { status: 409, message: 'User already exists' };
 
@@ -23,7 +23,7 @@ const adminRegister = async (name, email, password, role = 'customer') => {
     email: newUser.email,
     password: newUser.password,
   };
- 
+
   const token = jwtUtils.tokenAdmin(newUserCustomer);
   const result = { newUser, newUserCustomer, token };
   return result;

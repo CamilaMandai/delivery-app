@@ -13,7 +13,7 @@ function NavBar({ user }) {
       </Link>
       <Link
         data-testid="customer_products__element-navbar-link-orders"
-        to="/customer/products"
+        to="/customer/orders"
       >
         Meus Pedidos
       </Link>
