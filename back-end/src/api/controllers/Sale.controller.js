@@ -36,9 +36,16 @@ const findBySaleId = async (req, res) => {
   return res.status(200).json(sale);
 };
 
+const updateStatus = async (req, res) => {
+  const { id, newStatus } = req.body;
+  await SaleService.updateStatus(id, newStatus);
+  return res.status(204).json('ok');
+};
+
 module.exports = {
   create,
   findBySellerId,
   findByUserId,
   findBySaleId,
+  updateStatus,
 };

@@ -61,6 +61,10 @@ export const requestSale = async (id) => {
   return data;
 };
 
+export const udpateSaleStatus = async (body) => {
+  await api.patch('orders/sale/status', body);
+};
+
 export const requestAdmin = async (endpoint, body) => {
   const { data } = await api.post(endpoint, body);
   return data;
