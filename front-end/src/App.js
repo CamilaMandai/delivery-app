@@ -20,7 +20,7 @@ function App() {
       <Route path="/login" component={ Login } />
       <Route path="/register" component={ Register } />
       <Route path="/customer/products" component={ Products } />
-      <Route path="/seller/orders" component={ SellerOrders } />
+      <Route path="/seller/orders" exact component={ SellerOrders } />
       <Route path="/seller/orders/:id" component={ SellerOrderDetails } />
       <Route path="/admin/manage" component={ Admin } />
       <Route path="/customer/orders" component={ Orders } />
