@@ -10,8 +10,8 @@ function Admin() {
     const getUsers = async () => {
       const allUsers = await requestAllUsers();
       setUsers(allUsers.filter((user) => user.role !== 'administrator'));
-    }
-    getUsers;
+    };
+    getUsers();
   });
 
   const removeUser = async (id) => {
@@ -21,7 +21,7 @@ function Admin() {
   return (
     <div>
       <FormsAdm />
-      <UsersTable users={ users } removeUser={ removeUser }/>
+      <UsersTable users={ users } removeUser={ removeUser } />
     </div>
   );
 }

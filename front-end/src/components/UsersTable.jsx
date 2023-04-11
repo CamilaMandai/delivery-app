@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-function UsersTable({users, removeUser}) {
+function UsersTable({ users, removeUser }) {
   const dataTest = 'admin_manage__element-user-table-';
   return (
     <table>
@@ -22,7 +23,8 @@ function UsersTable({users, removeUser}) {
               <td data-testid={ `${dataTest}email-%{index}` }>{ email }</td>
               <td data-testid={ `${dataTest}role-%{index}` }>{ role }</td>
               <td>
-                <button 
+                <button
+                  type="button"
                   data-testid={ `${dataTest}remove-%{index}` }
                   onClick={ () => removeUser(id) }
                 >
@@ -31,10 +33,17 @@ function UsersTable({users, removeUser}) {
               </td>
             </tr>
           ))
-        }
+        };
       </tbody>
     </table>
   )
 }
 
-export default UsersTable
+UsersTable.propTypes = {
+  users: PropTypes.array,
+  removeUser: PropTypes.func,
+}.isRequired;
+
+export default UsersTable;
+
+
