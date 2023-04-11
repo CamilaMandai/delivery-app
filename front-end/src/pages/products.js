@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import NavBar from '../components/navBar';
 import ProductCard from '../components/productCard';
 import { requestProducts, requestValidateToken } from '../helpers/axios';
+import '../styles/productCard.css';
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -69,8 +70,8 @@ function Products() {
     (isAuthenticated
       ? (
         <div>
-          <div>
-            <NavBar user={ userName } />
+          <NavBar user={ userName } />
+          <div className="container">
             {products.map((e) => (
               <ProductCard
                 key={ e.id }
@@ -82,7 +83,7 @@ function Products() {
               />
             ))}
           </div>
-          <div>
+          <div className="car">
             <button
               type="button"
               data-testid="customer_products__button-cart"
@@ -93,7 +94,7 @@ function Products() {
               <h3
                 data-testid="customer_products__checkout-bottom-value"
               >
-                {(cartValue.toFixed(2)).replace(/\./, ',')}
+                {`R$ ${(cartValue.toFixed(2)).replace(/\./, ',')}`}
               </h3>
             </button>
           </div>

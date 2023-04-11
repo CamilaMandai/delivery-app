@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { requestCreateUser } from '../helpers/axios';
+import '../styles/register.css';
 
 function Register() {
   const [email, setEmail] = useState('');
@@ -45,11 +46,15 @@ function Register() {
   };
 
   return (
-    <div>
-      <form>
-        <label htmlFor="nome">
+    <div className="login-mobile-one">
+      <form className="box">
+        <h1 className="register">
+          Cadastro
+        </h1>
+        <label htmlFor="nome" className="register-name">
           Nome
           <input
+            className="input-name"
             type="text"
             id="nome"
             data-testid="common_register__input-name"
@@ -59,9 +64,10 @@ function Register() {
             placeholder="Seu nome"
           />
         </label>
-        <label htmlFor="email">
+        <label htmlFor="email" className="register-email">
           Email
           <input
+            className="input-email"
             id="email"
             type="email"
             data-testid="common_register__input-email"
@@ -71,9 +77,10 @@ function Register() {
             placeholder="seu-email@site.com.br"
           />
         </label>
-        <label htmlFor="password">
+        <label htmlFor="password" className="register-senha">
           Senha
           <input
+            className="input-senha"
             id="password"
             type="password"
             data-testid="common_register__input-password"
@@ -84,6 +91,7 @@ function Register() {
           />
         </label>
         <button
+          className="register-button"
           data-testid="common_register__button-register"
           name="Cadastra-se"
           type="submit"
@@ -95,7 +103,7 @@ function Register() {
       </form>
       {userFound
       && (
-        <p data-testid="common_register__element-invalid_register">
+        <p data-testid="common_register__element-invalid_register" className="alerta">
           Você já possui um cadastro
         </p>
       )}

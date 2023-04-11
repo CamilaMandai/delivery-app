@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap') ;
+
+body {
+  margin: 0%;
+  padding: 0%;
+  width: 100%;
+}
+
+.login-mobile {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
+}
+
+.box-black {
+  border-radius: 2px;
+  height: 300px;
+  padding-bottom: 10px;
+  padding-left: 8px;
+  padding-right: 10px;
+  position: center;
+  width: 300px;
+}
+
+.img-login {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+.email {
+  color: white;
+  margin: 5px;
+  padding: 0.1rem 1rem;
+}
+
+.input-email {
+  border-left: white;
+  border-radius: 2px;
+  border-right: white;
+  border-top: white;
+  box-sizing: border-box;
+  font-family: 'Abel', sans-serif;
+  font-size: 1rem;
+  line-height: 1.35rem;
+  margin: 10px 16px;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  width: 90%;
+}
+
+.input-email:focus {
+  border-color: #d43a00;
+  box-shadow: 0 0 0 0;
+  outline: 0;
+}
+
+.input-senha {
+  border-left: white;
+  border-radius: 2px;
+  border-right: white;
+  border-top: white;
+  box-sizing: border-box;
+  font-family: 'Abel', sans-serif;
+  font-size: 1rem;
+  line-height: 1.35rem;
+  margin: 10px 16px;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  width: 90%;
+}
+
+.senha {
+  color: white;
+  margin: 5px;
+  padding: 0.1rem 1rem;
+}
+
+.input-senha:focus {
+  border-color: #d43a00;
+  box-shadow: 0 10 0 0;
+  outline: 0;
+}
+
+.input-button {
+  background-color: #f69a0b;
+  border: 0 solid #e5e7eb;
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: rgba(255, 255, 255, 0.89);
+  cursor: pointer;
+  font-family: 'Abel', sans-serif;
+  font-size: 18px;
+  height: 35px;
+  margin: 12px 16px;
+  text-align: center;
+  width: 90%;
+}
+
+.input-button:disabled {
+  background-color: #f69c0b88;
+  color: rgba(255, 255, 255, 0.76);
+  cursor: auto;
+}
+
+.alert {
+  color: #f69a0b;
+  font-family: 'Abel', sans-serif;
+  font-size: 18px;
+  margin: -10px;
+}
+
+@media screen and (max-device-width: 900px) {
+
+  .box-black {
+    border-radius: 2px;
+    height: 280px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: center;
+    width: 280px;
+  }
+
+  .alert {
+    margin: 20px;
+  }
+}
+
+@media screen and (max-device-width: 400px) {
+
+  .box-black {
+    border-radius: 2px;
+    height: 200px;
+    position: center;
+    width: 200px;
+  }
+
+  .alert {
+    margin: 60px;
+  }
+}

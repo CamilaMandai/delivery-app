@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { requestLogin, setToken, requestValidateToken } from '../helpers/axios';
+import '../styles/login.css';
+import logo from '../styles/logo.png';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -71,13 +73,15 @@ function Login() {
   };
 
   return (
-    <div>
-      <form>
-        <label htmlFor="email">
+    <div className="login-mobile">
+      <img src={ logo } alt="img" className="img-login" />
+      <form className="box-black">
+        <label htmlFor="email-input" className="email">
           Email
           <input
+            className="input-email"
             type="text"
-            id="email"
+            id="email-input"
             data-testid="common_login__input-email"
             name="email"
             value={ email }
@@ -85,9 +89,11 @@ function Login() {
             placeholder="E-mail"
           />
         </label>
-        <label htmlFor="password">
+        
+        <label htmlFor="password" className="senha">
           Senha
           <input
+            className="input-senha"
             id="password"
             type="password"
             data-testid="common_login__input-password"
@@ -98,6 +104,7 @@ function Login() {
           />
         </label>
         <button
+          className="input-button"
           data-testid="common_login__button-login"
           disabled={ isDisabled }
           name="Login"
@@ -107,6 +114,7 @@ function Login() {
           Login
         </button>
         <button
+          className="input-button"
           data-testid="common_login__button-register"
           name="Cadastra-se"
           type="button"
@@ -117,7 +125,7 @@ function Login() {
       </form>
       {userNotFound
       && (
-        <p data-testid="common_login__element-invalid-email">
+        <p data-testid="common_login__element-invalid-email" className="alert">
           Email e/ou senha inválidos
         </p>
       )}

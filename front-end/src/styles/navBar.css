@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap') ;
+
+body {
+  margin: 0%;
+  padding: 0%;
+  width: 100%;
+}
+
+.link-nav {
+  align-items: center;
+  background-color: #1d2440;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.link {
+  color: white;
+  font-family: 'Abel', sans-serif;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: white;
+  text-decoration: overline;
+}
+
+.product {
+  align-items: center;
+  background-color: #f69a0b;
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  width: 400px;
+}
+
+.order {
+  align-items: center;
+  background-color: #d43a00;
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  width: 400px;
+}
+
+.user {
+  align-items: center;
+  background-color: #d43a00;
+  color: white;
+  display: flex;
+  font-family: 'Abel', sans-serif;
+  font-size: 20px;
+  height: 80px;
+  justify-content: center;
+  margin: -10px;
+  width: 410px;
+}
+
+.exit {
+  align-items: center;
+  background-color: #9b0800;
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  width: 400px;
+}
