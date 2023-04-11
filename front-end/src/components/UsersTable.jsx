@@ -33,10 +33,10 @@ function UsersTable({ users, removeUser }) {
               </td>
             </tr>
           ))
-        };
+        }
       </tbody>
     </table>
-  )
+  );
 }
 
 UsersTable.propTypes = {
@@ -45,5 +45,3 @@ UsersTable.propTypes = {
 }.isRequired;
 
 export default UsersTable;
-
-
