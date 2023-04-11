@@ -14,8 +14,6 @@ export default function SellerOrderDetails() {
   const { id } = useParams();
   const [order, setOrder] = useState({});
   const [products, setProducts] = useState([]);
-  const [disabledDispatch, setDisabledDispatch] = useState(true);
-  const [disabledPreparing, setDisabledPreparing] = useState(false);
   const [orderStatus, setOrderStatus] = useState('');
   // const [quantities, setQuantities] = userState([]);
 
@@ -23,10 +21,6 @@ export default function SellerOrderDetails() {
     const getSale = async () => {
       const sale = await requestSale(id);
       setOrderStatus(sale.status);
-      if (sale.status === 'Preparando') {
-        setDisabledPreparing(true);
-        setDisabledDispatch(false);
-      }
       const orderedProducts = await requestProductsBySaleId(id);
       const allProducts = await requestProducts();
       const filteredProductsByOrder = allProducts.filter(
@@ -40,7 +34,6 @@ export default function SellerOrderDetails() {
       ));
       setOrder(sale);
       setProducts(productsWithQuantity);
-      // console.log(productsWithQuantity);
       console.log(sale);
     };
     getSale();
@@ -49,15 +42,6 @@ export default function SellerOrderDetails() {
   const changeStatus = async (status) => {
     try {
       await udpateSaleStatus({ id: +id, newStatus: status });
-      console.log('oi');
-      if (status === 'Preparando') {
-        setDisabledDispatch(false);
-        setDisabledPreparing(true);
-      }
-      if (status === 'Em Trânsito') {
-        setDisabledDispatch(true);
-        setDisabledPreparing(true);
-      }
       setOrderStatus(status);
     } catch (e) {
       console.log(e.message);
@@ -99,7 +83,7 @@ export default function SellerOrderDetails() {
           type="button"
           data-testid="seller_order_details__button-preparing-check"
           onClick={ () => changeStatus('Preparando') }
-          disabled={ disabledPreparing }
+          disabled={ orderStatus !== 'Pendente' }
         >
           PREPARAR PEDIDO
         </button>
@@ -107,7 +91,7 @@ export default function SellerOrderDetails() {
           type="button"
           data-testid="seller_order_details__button-dispatch-check"
           onClick={ () => changeStatus('Em Trânsito') }
-          disabled={ disabledDispatch }
+          disabled={ orderStatus !== 'Preparando' }
         >
           SAIU PARA ENTREGA
         </button>
