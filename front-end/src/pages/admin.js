@@ -14,7 +14,7 @@ function Admin() {
     getUsers();
   });
 
-  const removeUser = async (id) => {
+  const deleteUser = async (id) => {
     setUsers(users.filter((user) => user.id !== id));
     await removeUser(id);
   };
@@ -22,7 +22,7 @@ function Admin() {
   return (
     <div>
       <FormsAdm />
-      <UsersTable users={ users } removeUser={ removeUser } />
+      <UsersTable users={ users } removeUser={ deleteUser } />
     </div>
   );
 }
