@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FormsAdm from '../components/formsAdm';
 import UsersTable from '../components/UsersTable';
-import { requestAllUsers } from '../helpers/axios';
+import { requestAllUsers, removeUser } from '../helpers/axios';
 
 function Admin() {
   const [users, setUsers] = useState([]);
@@ -16,6 +16,7 @@ function Admin() {
 
   const removeUser = async (id) => {
     setUsers(users.filter((user) => user.id !== id));
+    await removeUser(id);
   };
 
   return (
