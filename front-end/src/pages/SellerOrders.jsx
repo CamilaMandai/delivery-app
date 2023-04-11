@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavbarSeller from '../components/NavbarSeller';
 import { requestSaleBySeller } from '../helpers/axios';
+import '../styles/orderCard.css';
 
 export default function SellerOrders() {
   const [orders, setOrders] = useState([]);
@@ -19,12 +20,13 @@ export default function SellerOrders() {
   return (
     <div>
       <NavbarSeller />
-      <section>
+      <section className="orders-page-container orders-page-orders-container">
         { orders.length > 0 ? (
           orders.map((order) => (
             <div key={ order.id }>
               <Link to={ `/seller/orders/${order.id}` }>
                 <p
+                  className="pedido"
                   data-testid={ `seller_orders__element-order-id-${order.id}` }
                 >
                   Pedido

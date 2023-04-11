@@ -9,6 +9,7 @@ import {
   // requestValidateToken,
 } from '../helpers/axios';
 import OrderCheckout from '../components/OrderCheckout';
+import '../styles/checkout.css';
 
 function Checkout() {
   const history = useHistory();
@@ -102,9 +103,9 @@ function Checkout() {
   return (
     <div>
       <NavBar user={ savedUser.name } />
-      <h1>Finalizar Pedido</h1>
-      <div>
-        <table>
+      <h1 className="title-checkout">Finalizar Pedido</h1>
+      <div className="box-checkout">
+        <table className="table-checkout">
           { thead() }
           <tbody>
             {cart.map(({ name, quantity, price, id }, index) => (
@@ -119,14 +120,19 @@ function Checkout() {
             ))}
           </tbody>
         </table>
-        <h2 data-testid="customer_checkout__element-order-total-price">{ String(total.toFixed(2)).replace(/\./, ',') }</h2>
+        <h2 className="table-price" data-testid="customer_checkout__element-order-total-price">{ `Total R$ ${String(total.toFixed(2)).replace(/\./, ',')} `}</h2>
       </div>
       <div>
-        <h3>Detalhes e Endereço de Entrega</h3>
-        <form onSubmit={ checkout }>
-          <label htmlFor="customer_checkout__select-seller">
+
+        <h3 className="title-detail">Detalhes e Endereço de Entrega</h3>
+        <form className="box-detail" onSubmit={ checkout }>
+          <label
+            className="label-seller"
+            htmlFor="customer_checkout__select-seller"
+          >
             P. Vendedora Responsável
             <select
+              className="input-address"
               data-testid="customer_checkout__select-seller"
               onChange={ (event) => setChosenSeller(event.target.value) }
             >
@@ -145,30 +151,38 @@ function Checkout() {
               ;
             </select>
           </label>
-          <label htmlFor="customer_checkout__input-address">
+          <label className="label-seller" htmlFor="customer_checkout__input-address">
             Endereço:
             <input
+              className="input-address address"
               data-testid="customer_checkout__input-address"
               type="text"
               value={ deliveryAddress }
               onChange={ ({ target }) => setDeliveryAddress(target.value) }
             />
           </label>
-          <label htmlFor="customer_checkout__input-address-number">
+          <label
+            className="label-seller number"
+            htmlFor="customer_checkout__input-address-number"
+          >
             Número
             <input
+              className="input-address numbers"
               data-testid="customer_checkout__input-address-number"
               type="text"
               value={ deliveryNumber }
               onChange={ ({ target }) => setDeliveryNumber(Number(target.value)) }
             />
           </label>
-          <button
-            type="submit"
-            data-testid="customer_checkout__button-submit-order"
-          >
-            Finalizar Pedido
-          </button>
+          <div className="button-div">
+            <button
+              className="button-checkout"
+              type="submit"
+              data-testid="customer_checkout__button-submit-order"
+            >
+              Finalizar Pedido
+            </button>
+          </div>
         </form>
       </div>
 

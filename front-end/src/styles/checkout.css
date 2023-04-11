@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap') ;
+
+.body {
+  width: 100%;
+}
+
+.title-checkout {
+  align-items: center;
+  color: #d43a00;
+  display: flex;
+  font-family: 'Abel', sans-serif;
+  font-size: 25px;
+  justify-content: center;
+  margin-bottom: 8px;
+  margin-top: 25px;
+  width: 31.5%;
+}
+
+.box-checkout {
+  border-radius: 4px;
+  box-shadow: 0 0 0.3em rgb(15, 8, 8);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Abel', sans-serif;
+  justify-content: center;
+  margin-left: 8%;
+  padding: 20px;
+  width: 80%;
+}
+
+.table-checkout {
+  cursor: pointer;
+  padding-bottom: 8px;
+  padding-top: 5px;
+}
+
+.table-one {
+  background-color: #d43a00;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  line-height: 2.6;
+  text-align: center;
+}
+
+.table-two {
+  background-color: #f69a0b;
+  line-height: 2.5;
+  padding-left: 15px;
+  width: 48%;
+}
+
+.table-three {
+  background-color: #1d2440;
+  color: white;
+  line-height: 2.5;
+  text-align: center;
+  width: 11%;
+}
+
+.table-four {
+  background-color: #9b0800;
+  color: white;
+  line-height: 2.5;
+  text-align: center;
+  width: 11%;
+}
+
+.table-five {
+  background-color: #d43a00;
+  color: white;
+  line-height: 2.5;
+  text-align: center;
+  width: 11%;
+}
+
+.table-six {
+  background-color: #f69a0b;
+  border-bottom-right-radius: 10px;
+  border-left: none;
+  border-top-right-radius: 10px;
+  line-height: 2.5;
+  text-align: center;
+  width: 11%;
+}
+
+.table-button {
+  background-color: #f69a0b;
+  border: none;
+  font-family: 'Abel', sans-serif;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.table-button:hover {
+  color: white;
+  cursor: pointer;
+  text-decoration: overline;
+}
+
+.table-price {
+  align-items: center;
+  background-color: #1d2440;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  height: 37px;
+  justify-content: center;
+  width: 20%;
+}
+
+.title-detail {
+  align-items: center;
+  color: #d43a00;
+  display: flex;
+  font-family: 'Abel', sans-serif;
+  font-size: 25px;
+  justify-content: center;
+  margin-bottom: 8px;
+  margin-top: 30px;
+  width: 42%;
+}
+
+.box-detail {
+  border-radius: 4px;
+  box-shadow: 0 0 0.3em rgb(15, 8, 8);
+  display: flex;
+  font-family: 'Abel', sans-serif;
+  justify-content: space-around;
+  margin-bottom: 35px;
+  margin-left: 8%;
+  margin-top: 8px;
+  padding: 20px;
+  width: 80%;
+}
+
+.label-seller {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Abel', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 2.5;
+  padding: 10px;
+}
+
+.input-address {
+  line-height: 1.5;
+  padding: 6px;
+}
+
+.address {
+  padding-right: 20px;
+  width: 140%;
+}
+
+.number {
+  margin-left: 80px;
+  padding-left: 10px;
+}
+
+.address:focus {
+  border-color: #d43a00;
+  box-shadow: 0 10 0 0;
+  outline: 0;
+}
+
+.numbers:focus {
+  border-color: #d43a00;
+  box-shadow: 0 10 0 0;
+  outline: 0;
+}
+
+.button-div {
+  align-items: center;
+  background-color: #1d2440;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  height: 45px;
+  justify-content: center;
+  margin-top: 42px;
+  width: 16%;
+}
+
+.button-checkout {
+  background-color: #1d2440;
+  border: none;
+  color: white;
+  font-family: 'Abel', sans-serif;
+  font-size: 18px;
+}
+
+.button-div:active {
+  box-shadow: 1px 2px 8px 1px rgba(0, 0, 0, 0.616);
+  transform: scale(0.98);
+}

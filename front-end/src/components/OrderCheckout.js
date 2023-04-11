@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../styles/checkout.css';
 
 function Order(props) {
   const { name, price, quantity, handleRemove, index } = props;
@@ -7,6 +8,7 @@ function Order(props) {
   return (
     <tr>
       <td
+        className="table-one"
         data-testid={
           `customer_checkout__element-order-table-item-number-${index}`
         }
@@ -14,6 +16,7 @@ function Order(props) {
         { index + 1}
       </td>
       <td
+        className="table-two"
         data-testid={
           `customer_checkout__element-order-table-name-${index}`
         }
@@ -21,6 +24,7 @@ function Order(props) {
         { name }
       </td>
       <td
+        className="table-three"
         data-testid={
           `customer_checkout__element-order-table-quantity-${index}`
         }
@@ -28,6 +32,7 @@ function Order(props) {
         { quantity }
       </td>
       <td
+        className="table-four"
         data-testid={
           `customer_checkout__element-order-table-unit-price-${index}`
         }
@@ -35,6 +40,7 @@ function Order(props) {
         {String(price).replace(/\./, ',')}
       </td>
       <td
+        className="table-five"
         data-testid={
           `customer_checkout__element-order-table-sub-total-${index}`
         }
@@ -42,11 +48,19 @@ function Order(props) {
         {String(total.toFixed(2)).replace(/\./, ',')}
       </td>
       <td
+        className="table-six"
         data-testid={
           `customer_checkout__element-order-table-remove-${index}`
         }
       >
-        <button type="button" onClick={ handleRemove }>Remover</button>
+        <button
+          className="table-button"
+          type="button"
+          onClick={ handleRemove }
+        >
+          Remover
+
+        </button>
       </td>
     </tr>
   );

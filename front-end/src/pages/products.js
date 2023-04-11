@@ -85,6 +85,7 @@ function Products() {
           </div>
           <div className="car">
             <button
+              className="car-button"
               type="button"
               data-testid="customer_products__button-cart"
               onClick={ handleClick }

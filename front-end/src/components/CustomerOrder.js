@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import { useParams } from 'react-router-dom';
 import NavBar from './navBar';
 import { requestSale, requestAllUsers } from '../helpers/axios';
+import '../styles/orderCard.css';
 
 function CustomerOrder() {
   const [informations, setInformations] = useState({});
@@ -33,52 +34,55 @@ function CustomerOrder() {
   return (
     <div>
       <NavBar user={ user.name } />
-      <p>
-        {' '}
-        PEDIDO
-        <p data-testid="customer_order_details__element-order-details-label-order-id">
-          {console.log('===>>> infor', informations)}
-          { informations.id }
+      <div className="orders-page-container orders-page-orders-container">
+        <p className="pedido">
+          {' '}
+          <p data-testid="customer_order_details__element-order-details-label-order-id">
+            {console.log('===>>> infor', informations)}
+            { `PEDIDO ${informations.id}`}
+          </p>
         </p>
-      </p>
-      <p>
-        <span
-          data-testid="customer_order_details__element-order-details-label-seller-name"
-        >
-          {`P. Venda: ${sellers.map((seller) => (seller.name))}`}
-        </span>
-      </p>
-      <p>
-        <span
-          data-testid="customer_order_details__element-order-details-label-order-date"
-        >
+        <p>
+          <span
+            data-testid="customer_order_details__element-order-details-label-seller-name"
+          >
+            {`P. Venda: ${sellers.map((seller) => (seller.name))}`}
+          </span>
+        </p>
+        <p>
+          <span
+            data-testid="customer_order_details__element-order-details-label-order-date"
+          >
 
-          {`Data do pedido: ${formatDate}`}
-        </span>
-      </p>
-      <p>
-        <span
-          data-testid={ `${dataTestId}__element-order-details-label-delivery-status` }
-        >
-          { `Status: ${informations.status}`}
-        </span>
-      </p>
-      <p>
-        <span
-          data-testid={ `${dataTestId}__element-order-total-price` }
-        >
-          {`${informations.totalPrice}`.replace(/\./, ',')}
-        </span>
-      </p>
-      <p>
-        <button
-          type="button"
-          data-testid="customer_order_details__button-delivery-check"
-          disabled
-        >
-          Marcar como entregue
-        </button>
-      </p>
+            {`Data do pedido: ${formatDate}`}
+          </span>
+        </p>
+        <p>
+          <span
+            className="status"
+            data-testid={ `${dataTestId}__element-order-details-label-delivery-status` }
+          >
+            { `Status: ${informations.status}`}
+          </span>
+        </p>
+        <p>
+          <span
+            data-testid={ `${dataTestId}__element-order-total-price` }
+          >
+            {`R$ ${informations.totalPrice}`.replace(/\./, ',')}
+          </span>
+        </p>
+        <p>
+          <button
+            className="button-check"
+            type="button"
+            data-testid="customer_order_details__button-delivery-check"
+            disabled
+          >
+            Marcar como entregue
+          </button>
+        </p>
+      </div>
     </div>
   );
 }

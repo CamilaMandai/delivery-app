@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { requestLogin, setToken, requestValidateToken } from '../helpers/axios';
 import '../styles/login.css';
-import logo from '../styles/logo.png';
+import logo from '../images/logo.png';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -89,7 +89,6 @@ function Login() {
             placeholder="E-mail"
           />
         </label>
-        
         <label htmlFor="password" className="senha">
           Senha
           <input
