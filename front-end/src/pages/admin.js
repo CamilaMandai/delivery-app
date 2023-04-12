@@ -15,7 +15,7 @@ function Admin() {
   });
 
   const deleteUser = async (id) => {
-    setUsers(users.filter((user) => user.id !== id));
+    setUsers((prevState) => prevState.filter((user) => user.id !== id));
     await removeUser(id);
   };
 
