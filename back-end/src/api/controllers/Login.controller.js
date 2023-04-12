@@ -35,9 +35,16 @@ const findAll = async (_req, res) => {
   return res.status(200).json(users);
 };
 
+const remove = async (req, res) => {
+  const { id } = req.params;
+  await LoginService.remove(id);
+  return res.status(204).json();
+}
+
 module.exports = {
   login,
   validateToken,
   register,
   findAll,
+  remove,
 };

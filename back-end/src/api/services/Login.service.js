@@ -35,9 +35,14 @@ const findAll = async () => {
   return (users);
 };
 
+const remove = async (id) => {
+  await User.destroy({ where: { id }})
+};
+
 module.exports = {
   validateUser,
   findByEmail,
   register,
   findAll,
+  remove,
 };
