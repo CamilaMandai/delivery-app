@@ -39,7 +39,7 @@ const remove = async (req, res) => {
   const { id } = req.params;
   await LoginService.remove(id);
   return res.status(204).json();
-}
+};
 
 module.exports = {
   login,
