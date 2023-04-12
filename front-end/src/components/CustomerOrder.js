@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { useParams } from 'react-router-dom';
 import NavBar from './navBar';
-import { requestSale, requestAllUsers } from '../helpers/axios';
+import { requestSale, requestAllUsers, udpateSaleStatus } from '../helpers/axios';
 
 function CustomerOrder() {
   const [informations, setInformations] = useState({});
   const [sellers, setSellers] = useState([]);
+  const [orderStatus, setOrderStatus] = useState('');
   const user = JSON.parse(localStorage.getItem('user'));
   const { id } = useParams();
 
@@ -14,6 +15,7 @@ function CustomerOrder() {
     const productsId = async () => {
       const requestSaleProduct = await requestSale(id);
       setInformations(requestSaleProduct);
+      setOrderStatus(requestSaleProduct.status);
     };
     const fetchApi = async () => {
       try {
@@ -27,6 +29,11 @@ function CustomerOrder() {
     productsId();
     fetchApi();
   }, []);
+
+  const changeStatus = async () => {
+    await udpateSaleStatus({ id: +id, newStatus: 'Entregue' });
+    setOrderStatus('Entregue');
+  };
 
   const formatDate = dayjs(informations.saleDate).format('DD/MM/YYYY');
   const dataTestId = 'customer_order_details';
@@ -60,7 +67,7 @@ function CustomerOrder() {
         <span
           data-testid={ `${dataTestId}__element-order-details-label-delivery-status` }
         >
-          { `Status: ${informations.status}`}
+          { `Status: ${orderStatus}`}
         </span>
       </p>
       <p>
@@ -74,7 +81,8 @@ function CustomerOrder() {
         <button
           type="button"
           data-testid="customer_order_details__button-delivery-check"
-          disabled
+          disabled={ orderStatus !== 'Em Trânsito' }
+          onClick={ changeStatus }
         >
           Marcar como entregue
         </button>

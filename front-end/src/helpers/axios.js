@@ -79,3 +79,7 @@ export const requestProductsBySaleId = async (id) => {
   const { data } = await api.get(`/saleproducts/${id}`);
   return data;
 };
+
+export const removeUser = async (id) => {
+  await api.delete(`/login/${id}`);
+};
