@@ -61,6 +61,10 @@ export const requestSale = async (id) => {
   return data;
 };
 
+export const udpateSaleStatus = async (body) => {
+  await api.patch('orders/sale/status', body);
+};
+
 export const requestAdmin = async (endpoint, body) => {
   const { data } = await api.post(endpoint, body);
   return data;
@@ -74,4 +78,8 @@ export const createSaleProduct = async (body) => {
 export const requestProductsBySaleId = async (id) => {
   const { data } = await api.get(`/saleproducts/${id}`);
   return data;
+};
+
+export const removeUser = async (id) => {
+  await api.delete(`/login/${id}`);
 };
