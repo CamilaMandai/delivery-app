@@ -12,7 +12,7 @@ function OrderCard(props) {
   const DELVI_ORD = '_element-delivery-status-';
 
   return (
-    <section>
+    <section className="TESTEAQUI">
       <Link
         to={ `/customer/orders/${id}` }
       >
