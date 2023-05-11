@@ -7,7 +7,7 @@ Aplicação de entregas de bebidas, com diferentes fluxos de acesso. Neste proje
 > É necessário ter Docker na sua máquina local para executar os seguintes comandos.
 
 - Rode o comando `docker-compose up` para subir o container do MySQL.
-- Em seguida rode o comano `npm install`
+- Em seguida rode o comando `npm install`
 - Por fim, rode o comando `npm run dev`
 
 
