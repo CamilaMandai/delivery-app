@@ -14,10 +14,10 @@ module.exports = {
      },
      {
       id: 2,
-      name:'Fulana Pereira',
+      name:'Aline Pereira',
       role: role[1],
-      email:'fulana@deliveryapp.com',
-      password: '3c28d2b0881bf46457a853e0b07531c6',
+      email:'aline@deliveryapp.com',
+      password: 'd3aa349c8d932ea71f11aa096ba29f61',
      },
      {
       id: 3,
@@ -32,6 +32,13 @@ module.exports = {
       role: role[2],
       email:'batatinha@email.com',
       password: 'd3aa349c8d932ea71f11aa096ba29f61',
+     },
+     {
+      id: 5,
+      name:'Luigi',
+      role: role[1],
+      email:'luigi@deliveryapp.com',
+      password: '3c28d2b0881bf46457a853e0b07531c6',
      }
     ], { timestamps: false});
   
