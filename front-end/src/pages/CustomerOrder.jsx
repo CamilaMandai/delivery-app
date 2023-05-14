@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { useParams } from 'react-router-dom';
-import NavBar from './navBar';
+import NavBar from '../components/NavBar';
 import '../styles/orderCard.css';
 import { requestSale, requestAllUsers, udpateSaleStatus } from '../helpers/axios';
 

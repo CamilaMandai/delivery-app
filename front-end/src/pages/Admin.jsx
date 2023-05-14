@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import FormsAdm from '../components/formsAdm';
+import FormsAdm from '../components/FormsAdm';
 import UsersTable from '../components/UsersTable';
 import { requestAllUsers, removeUser } from '../helpers/axios';
 

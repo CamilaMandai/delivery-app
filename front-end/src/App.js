@@ -5,11 +5,11 @@ import Checkout from './pages/Checkout';
 import Register from './pages/Register';
 import SellerOrderDetails from './pages/SellerOrderDetails';
 import SellerOrders from './pages/SellerOrders';
-import Admin from './pages/admin';
-import Login from './pages/login';
-import Orders from './pages/orders';
-import Products from './pages/products';
-import CustomerOrder from './components/CustomerOrder';
+import Admin from './pages/Admin';
+import Login from './pages/Login';
+import Orders from './pages/Orders';
+import Products from './pages/Products';
+import CustomerOrder from './pages/CustomerOrder';
 
 function App() {
   return (

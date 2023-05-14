@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import NavBar from '../components/navBar';
-import ProductCard from '../components/productCard';
+import NavBar from '../components/NavBar';
+import ProductCard from '../components/ProductCard';
 import { requestProducts, requestValidateToken } from '../helpers/axios';
 import '../styles/productCard.css';
 

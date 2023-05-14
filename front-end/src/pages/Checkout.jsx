@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import NavBar from '../components/navBar';
+import NavBar from '../components/NavBar';
 import {
   requestAllUsers,
   createSale,
